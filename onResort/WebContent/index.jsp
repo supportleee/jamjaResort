@@ -12,17 +12,23 @@
 <head>
 <meta charset="UTF-8">
 <title>온리조트</title>
+<style>
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 </head>
 <body>
 	<table>
 		<tr>
-			<td><jsp:include page="menu.html"/></td>
+			<td><jsp:include page="menu.html" /></td>
 		</tr>
 		<tr>
-			<td><jsp:include page="<%=contentPage %>" /></td>
+			<td><jsp:include page="<%=contentPage%>" /></td>
 		</tr>
 		<tr>
-			<td><jsp:include page="footer.html"/></td>
+			<td><jsp:include page="footer.html" /></td>
 		</tr>
 	</table>
 </body>
