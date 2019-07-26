@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko-kr">
 
 <head>
 
@@ -16,29 +16,6 @@
 
 <!-- Custom styles for this template -->
 <link href="css/modern-business.css" rel="stylesheet">
-
-<!-- google Map  -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwlNqAEil52XRPHmSVb4Luk18qQG9GqcM&sensor=false&language=en"></script>
-
-<script>
-	function initialize() {
-		var myLatlng = new google.maps.LatLng(37.385834, 127.121173); // 좌표값
-		var mapOptions = {
-			zoom : 17, // 지도 확대레벨 조정
-			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		var map = new google.maps.Map(document.getElementById('map_canvas'),
-				mapOptions);
-		var marker = new google.maps.Marker({
-			position : myLatlng,
-			map : map,
-			title : "온리조트" // 마커에 마우스를 올렸을때 간략하게 표기될 설명글
-		});
-	}
-	window.onload = initialize;
-</script>
 
 </head>
 
@@ -57,7 +34,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown "><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 리조트소개 </a>
@@ -68,14 +45,14 @@
 							<a class="dropdown-item" href="about_businessRoom.html">비즈니스룸</a>
 							<a class="dropdown-item" href="about_economyRoom.html">이코노미룸</a>
 						</div></li>
-					<li class="nav-item active dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">찾아오기</a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="access_map.html">찾아오는길</a>
-							<a class="dropdown-item active" href="access_publicTransport.html">대중교통이용</a>
+							<a class="dropdown-item" href="access_map.html">찾아오는길</a> <a
+								class="dropdown-item" href="access_publicTransport.html">대중교통이용</a>
 							<a class="dropdown-item" href="access_privateCar.html">자가용이용</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
@@ -113,46 +90,97 @@
 		</div>
 	</nav>
 
+	<header>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel" data-interval="4000">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- Slide One - Set the background image for this slide in the line below -->
+				<div class="carousel-item active"
+					style="background-image: url('http://localhost:8080/onResort/image/main1.jpg')">
+				</div>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main2.jpg')">
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main3.jpg')">
+				</div>
+				<!-- Slide Four - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main4.jpg')">
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</header>
+
 	<!-- Page Content -->
 	<div class="container">
+		<!-- Portfolio Section -->
+		<h1 class="my-4">온 리조트가 추천하는 프로모션</h1>
 
-		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">
-			찾아오기 <small>교통수단이용</small>
-		</h1>
-
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">메인</a></li>
-			<li class="breadcrumb-item active">교통수단이용</li>
-		</ol>
-
-		<!-- Content Row -->
 		<div class="row">
-			<!-- Map Column -->
-			<div class="col-lg-12 mb-4">
-				<!-- Embedded Google Map -->
-				<div id="map_canvas" style="width: 100%; height: 600px; margin:0px;"></div>
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/firstClassRoom.jpg"
+						alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">퍼스트클래스</a>
+						</h4>
+						<p class="card-text">큰 창을 통해 탁 트인 바다가 보이는 안락한 거실을 중심으로 왼편에는 메인
+							침실과 욕실이, 오른편에는 수행원을 위한 침실과 욕실이 있습니다. 메인 욕실은 바다를 내려다 보며 최고의 휴식을 누릴
+							수 있는 자쿠지를 갖추고 있으며, 섬 방향에는 집무실과 회의실로 사용 가능한 거실 공간이 있습니다.</p>
+					</div>
+				</div>
 			</div>
-
-			<!-- Contact Details Column -->
-			<div class="col-lg-12 mb-4">
-				<dl class="row">
-					<dt class="col-sm-12">
-						<h3 class="my-3">대중교통 안내</h3>
-					</dt>
-					<dt class="col-sm-12">지하철</dt>
-					<dd class="col-sm-12"><ul><li>분당선 서현역 4번출구(AK프라자 2번 출구)에서 성남교육지원청 방향으로 도보 3분</li></ul></dd>
-					<dt class="col-sm-12">버스</dt>
-					<dd class="col-sm-12"><ul><li>일반 116, 222, 직행3500 이용 시</li></ul></dd>
-					<dd class="col-sm-12">서현역, AK프라자 정류장(분당구청 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
-					<dd class="col-sm-12"><ul><li>일반116, 222, 직행3500, 마을3-1, 32, 71, 74, 602, 602-1, 602-1C, 602-2 이용시</li></ul></dd>
-					<dd class="col-sm-12">서현역,AK프라자 정류장(이매촌 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
-				</dl>
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/businessRoom.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">비즈니스</a>
+						</h4>
+						<p class="card-text">드레스 룸처럼 사용할 수 있는 넉넉한 수납 공간을 갖춘 옷장, 샤워 부스를
+							따로 갖춘 욕실이 구비되어 있습니다. 천상의 휴식을 제공하는 헤븐리 베드(Heavenly Bed)는 물론, 해변 측에
+							위치한 웨스틴 클럽의 다양하고 품위 있는 서비스를 만끽하실 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/economyRoom.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">이코노미</a>
+						</h4>
+						<p class="card-text">쾌적한 수면이 최고의 서비스라는 마음으로 편안한 잠자리를 위해 헤븐리
+							베드(Heavenly Bed)를 준비하여 ‘구름 위에서 자는 기분’을 느끼실 수 있습니다. 해변의 시원함과 섬의 맑은
+							공기는 여정에 즐거움을 더해드립니다.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /.row -->
-
-
 	</div>
 	<!-- /.container -->
 
@@ -170,11 +198,6 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Contact form JavaScript -->
-	<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-	<script src="js/jqBootstrapValidation.js"></script>
-	<script src="js/contact_me.js"></script>
 
 </body>
 

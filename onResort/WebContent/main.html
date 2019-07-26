@@ -1,10 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko-kr">
+
 <head>
-<meta charset="UTF-8">
-<title>온리조트-메인</title>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>onResort</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/modern-business.css" rel="stylesheet">
+
 </head>
+
 <body>
-	<img src="image/main.jpg">
+
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">ON</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 리조트소개 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item active" href="main.html">온리조트</a> <a
+								class="dropdown-item" href="about_firstClassRoom.html">퍼스트클래스룸</a>
+							<a class="dropdown-item" href="about_businessRoom.html">비즈니스룸</a>
+							<a class="dropdown-item" href="about_economyRoom.html">이코노미룸</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">찾아오기</a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="access_map.html">찾아오는길</a> <a
+								class="dropdown-item" href="access_publicTransport.html">대중교통이용</a>
+							<a class="dropdown-item" href="access_privateCar.html">자가용이용</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 주변여행지 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="spot_mountain.html">높아산</a> <a
+								class="dropdown-item" href="spot_beach.html">온해수욕장</a> <a
+								class="dropdown-item" href="spot_hotSpring.html">따끈온천</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							예약하기 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="reservation_view.jsp">예약상황</a> <a
+								class="dropdown-item" href="reservation_reserve.jsp">예약하기</a> <a
+								class="dropdown-item" href="reservation_admin_allview.jsp">관리자페이지</a>
+							<a class="dropdown-item" href="reservation_admin_logout.jsp">관리자로그아웃</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							펜션소식 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="board_notice.jsp">펜션소식</a> <a
+								class="dropdown-item" href="board_review.jsp">이용후기</a>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<header>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel" data-interval="4000">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- Slide One - Set the background image for this slide in the line below -->
+				<div class="carousel-item active"
+					style="background-image: url('http://localhost:8080/onResort/image/main1.jpg')">
+				</div>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main2.jpg')">
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main3.jpg')">
+				</div>
+				<!-- Slide Four - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://localhost:8080/onResort/image/main4.jpg')">
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</header>
+
+	<!-- Page Content -->
+	<div class="container">
+		<!-- Portfolio Section -->
+		<h1 class="my-4">온 리조트가 추천하는 프로모션</h1>
+
+		<div class="row">
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/firstClassRoom.jpg"
+						alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">퍼스트클래스</a>
+						</h4>
+						<p class="card-text">큰 창을 통해 탁 트인 바다가 보이는 안락한 거실을 중심으로 왼편에는 메인
+							침실과 욕실이, 오른편에는 수행원을 위한 침실과 욕실이 있습니다. 메인 욕실은 바다를 내려다 보며 최고의 휴식을 누릴
+							수 있는 자쿠지를 갖추고 있으며, 섬 방향에는 집무실과 회의실로 사용 가능한 거실 공간이 있습니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/businessRoom.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">비즈니스</a>
+						</h4>
+						<p class="card-text">드레스 룸처럼 사용할 수 있는 넉넉한 수납 공간을 갖춘 옷장, 샤워 부스를
+							따로 갖춘 욕실이 구비되어 있습니다. 천상의 휴식을 제공하는 헤븐리 베드(Heavenly Bed)는 물론, 해변 측에
+							위치한 웨스틴 클럽의 다양하고 품위 있는 서비스를 만끽하실 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-sm-6 portfolio-item">
+				<div class="card h-100">
+					<a href="#"><img class="card-img-top"
+						src="http://localhost:8080/onResort/image/economyRoom.jpg" alt=""></a>
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#">이코노미</a>
+						</h4>
+						<p class="card-text">쾌적한 수면이 최고의 서비스라는 마음으로 편안한 잠자리를 위해 헤븐리
+							베드(Heavenly Bed)를 준비하여 ‘구름 위에서 자는 기분’을 느끼실 수 있습니다. 해변의 시원함과 섬의 맑은
+							공기는 여정에 즐거움을 더해드립니다.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">경기도 성남시 분당구 황새울로 329번길 5
+				TEL 010)9001-0392 FAX 0504)079-0392 대표이사 이지원</p>
+			<p class="m-0 text-center text-white">Copyright &copy; 2019
+				ONRESORT Co. All rights reserved.</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

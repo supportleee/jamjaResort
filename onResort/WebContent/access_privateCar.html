@@ -1,10 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>onResort</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/modern-business.css" rel="stylesheet">
+
+<!-- google Map  -->
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwlNqAEil52XRPHmSVb4Luk18qQG9GqcM&sensor=false&language=en"></script>
+
+<script>
+	function initialize() {
+		var myLatlng = new google.maps.LatLng(37.385834, 127.121173); // 좌표값
+		var mapOptions = {
+			zoom : 17, // 지도 확대레벨 조정
+			center : myLatlng,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		}
+		var map = new google.maps.Map(document.getElementById('map_canvas'),
+				mapOptions);
+		var marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : "온리조트" // 마커에 마우스를 올렸을때 간략하게 표기될 설명글
+		});
+	}
+	window.onload = initialize;
+</script>
+
 </head>
+
 <body>
 
+	<!-- Navigation -->
+	<nav
+		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">ON</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown "><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 리조트소개 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="main.html">온리조트</a> <a
+								class="dropdown-item" href="about_firstClassRoom.html">퍼스트클래스룸</a>
+							<a class="dropdown-item" href="about_businessRoom.html">비즈니스룸</a>
+							<a class="dropdown-item" href="about_economyRoom.html">이코노미룸</a>
+						</div></li>
+					<li class="nav-item active dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">찾아오기</a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="access_map.html">찾아오는길</a> <a
+								class="dropdown-item" href="access_publicTransport.html">대중교통이용</a>
+							<a class="dropdown-item active" href="access_privateCar.html">자가용이용</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> 주변여행지 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item" href="spot_mountain.html">높아산</a> <a
+								class="dropdown-item" href="spot_beach.html">온해수욕장</a> <a
+								class="dropdown-item" href="spot_hotSpring.html">따끈온천</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							예약하기 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="reservation_view.jsp">예약상황</a> <a
+								class="dropdown-item" href="reservation_reserve.jsp">예약하기</a> <a
+								class="dropdown-item" href="reservation_admin_allview.jsp">관리자페이지</a>
+							<a class="dropdown-item" href="reservation_admin_logout.jsp">관리자로그아웃</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							펜션소식 </a>
+						<div class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownBlog">
+							<a class="dropdown-item" href="board_notice.jsp">펜션소식</a> <a
+								class="dropdown-item" href="board_review.jsp">이용후기</a>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3">
+			찾아오기 <small>자가용이용</small>
+		</h1>
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">메인</a></li>
+			<li class="breadcrumb-item active">자가용이용</li>
+		</ol>
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Map Column -->
+			<div class="col-lg-12 mb-4">
+				<!-- Embedded Google Map -->
+				<div id="map_canvas"
+					style="width: 100%; height: 600px; margin: 0px;"></div>
+			</div>
+
+			<!-- Contact Details Column -->
+			<div class="col-lg-12 mb-4">
+				<dl class="row">
+					<dt class="col-sm-12">
+						<h3 class="my-3">자동차로 오시는 길</h3>
+					</dt>
+					<dt class="col-sm-12 my-2">광화문/이태원 방향</dt>
+					<dd class="col-sm-12 my-2">남산 3호 터널 경유 → 이태원 방향으로 진행하다가 한남동
+						사거리에서 우회전 → (구)단국대 앞을 지나 한남대교 진입 → 한남대교 남단에서 종합운동장 방향 출구로 진입 →
+						올림픽대로 잠실종합운동장 방향 직진 → 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파,
+						성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입
+						→ 정문 도착</dd>
+					<dt class="col-sm-12 my-2">장충동/옥수동/금호동 방향</dt>
+					<dd class="col-sm-12 my-2">동호대교 진입 → 동호대교 남단에서 압구정 방향 출구 진입 →
+						압구정 사거리에서 교각을 중심으로 좌로 U턴 → 맨 우측 차선 올림픽 대로 방향으로 진입 후 잠실종합운동장 방향 직진
+						→ 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째
+						사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입 → 정문 도착</dd>
+					<dt class="col-sm-12 my-2">강남 방향</dt>
+					<dd class="col-sm-12 my-2">역삼역 방향 테헤란로 진입 → 잠실 방향으로 직진 →
+						잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛
+						주차) 방향으로 진입 → 정문 도착</dd>
+					<dt class="col-sm-12 my-2">네비게이션 검색시</dt>
+					<dd class="col-sm-12 my-2">네비게이션으로 검색시 ”온리조트”로 검색해 주세요.</dd>
+					<dt class="col-sm-12 my-2">※ 주차구간 안내</dt>
+					<dd class="col-sm-12 my-2">호텔 정문 앞 고객 전용 주차장 입구 진입 → 지하 2층 D라인 및 지하 3층 F라인에 주차하시면 보다 편리한 투숙이 가능합니다.</dd>
+				</dl>
+			</div>
+		</div>
+		<!-- /.row -->
+
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">경기도 성남시 분당구 황새울로 329번길 5
+				TEL 010)9001-0392 FAX 0504)079-0392 대표이사 이지원</p>
+			<p class="m-0 text-center text-white">Copyright &copy; 2019
+				ONRESORT Co. All rights reserved.</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Contact form JavaScript -->
+	<!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+	<script src="js/jqBootstrapValidation.js"></script>
+	<script src="js/contact_me.js"></script>
+
 </body>
+
 </html>
