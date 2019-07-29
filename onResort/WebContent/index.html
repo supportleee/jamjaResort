@@ -17,78 +17,21 @@
 <!-- Custom styles for this template -->
 <link href="css/modern-business.css" rel="stylesheet">
 
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	$('#header').load('header.html');
+	$('#footer').load('footer.html');
+});
+</script>
+
 </head>
 
 <body>
 
 	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="index.html">ON</a>
-			<button class="navbar-toggler navbar-toggler-right" type="button"
-				data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 리조트소개 </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="main.html">온리조트</a> <a
-								class="dropdown-item" href="about_firstClassRoom.html">퍼스트클래스룸</a>
-							<a class="dropdown-item" href="about_businessRoom.html">비즈니스룸</a>
-							<a class="dropdown-item" href="about_economyRoom.html">이코노미룸</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">찾아오기</a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="access_map.html">찾아오는길</a> <a
-								class="dropdown-item" href="access_publicTransport.html">대중교통이용</a>
-							<a class="dropdown-item" href="access_privateCar.html">자가용이용</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 주변여행지 </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="spot_mountain.html">높아산</a> <a
-								class="dropdown-item" href="spot_beach.html">온해수욕장</a> <a
-								class="dropdown-item" href="spot_hotSpring.html">따끈온천</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							예약하기 </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="reservation_view.jsp">예약상황</a> <a
-								class="dropdown-item" href="reservation_reserve.jsp">예약하기</a> <a
-								class="dropdown-item" href="reservation_admin_allview.jsp">관리자페이지</a>
-							<a class="dropdown-item" href="reservation_admin_logout.jsp">관리자로그아웃</a>
-						</div></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							펜션소식 </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="board_notice.jsp">펜션소식</a> <a
-								class="dropdown-item" href="board_review.jsp">이용후기</a>
-						</div></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<div id='header'></div>
 
 	<header>
 		<div id="carouselExampleIndicators" class="carousel slide"
@@ -185,13 +128,7 @@
 	<!-- /.container -->
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">경기도 성남시 분당구 황새울로 329번길 5
-				TEL 010)9001-0392 FAX 0504)079-0392 대표이사 이지원</p>
-			<p class="m-0 text-center text-white">Copyright &copy; 2019
-				ONRESORT Co. All rights reserved.</p>
-		</div>
+	<footer class="py-5 bg-dark" id='footer'>
 		<!-- /.container -->
 	</footer>
 
