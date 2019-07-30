@@ -115,7 +115,7 @@
 					%>
 					<tr>
 						<td id='button_cell' colspan='4' style='text-align: right'><input
-							type='button' value='신규'
+							type='button' value='신규' class="btn btn-outline-primary"
 							onclick="location.href='board_notice_insert.jsp'"></td>
 					</tr>
 				</table>
