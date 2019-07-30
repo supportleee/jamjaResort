@@ -3,8 +3,8 @@
 <%@ page import='java.io.*'%>
 <%@ page import='com.oreilly.servlet.*'%>
 <%@ page import='com.oreilly.servlet.multipart.*'%>
-<%@ page import="onResort.service.NoticeService"%>
-<%@ page import="onResort.service.NoticeServiceImpl"%>
+<%@ page import="onResort.service.Review_boardService"%>
+<%@ page import="onResort.service.Review_boardServiceImpl"%>
 <%@ page import="onResort.dto.*"%>
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>
@@ -48,12 +48,12 @@
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			펜션소식 <small>펜션소식</small>
+			펜션소식 <small>이용후기</small>
 		</h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="index.html">메인</a></li>
-			<li class="breadcrumb-item active">펜션소식</li>
+			<li class="breadcrumb-item active">이용후기</li>
 		</ol>
 
 		<div class='row'>
@@ -63,12 +63,12 @@
 					MultipartRequest multi = new MultipartRequest(request, uploadPath, 10 * 1024 * 1024, "utf-8",
 							new DefaultFileRenamePolicy());
 					String key = multi.getParameter("key");
-					NoticeService noticeService = new NoticeServiceImpl();
-					NoticeDto noticedto = noticeService.selectOne(Integer.parseInt(key));
+					Review_boardService reviewService = new Review_boardServiceImpl();
+					Review_boardDto reviewdto = reviewService.selectOne(Integer.parseInt(key));
 				%>
 				<script>
 					function deleteFile() {
-				<%String fileUrl = "WebContent/upload/" + noticedto.getImgname();
+				<%String fileUrl = "WebContent/upload/" + reviewdto.getImgname();
 			if (fileUrl == null) {%>
 					return;
 				<%}
@@ -124,30 +124,30 @@
 
 					}
 				</script>
-				<form method='post' action='board_notice_write.jsp'
+				<form method='post' action='board_review_write.jsp'
 					enctype='multipart/form-data'>
 					<table class='table'>
 						<tr>
 							<td>번호</td>
 							<td class='two' style='vertical-align: middle'><input
 								type='text' name='key' id='key' style="border: 0;" readonly
-								value='<%=noticedto.getId()%>'></td>
+								value='<%=reviewdto.getId()%>'></td>
 						</tr>
 						<tr>
 							<td>제목</td>
 							<td class='two' style='vertical-align: middle'><input
-								type='text' name='title' style='width:100%' required
-								maxlength='20' value='<%=noticedto.getTitle()%>'></td>
+								type='text' name='title' style="width: 100%" required
+								maxlength='20' value='<%=reviewdto.getTitle()%>'></td>
 						</tr>
 						<tr>
 							<td>일자</td>
-							<td class='two' style="vertical-align: middle"><%=noticedto.getDayOfRegister()%></td>
+							<td class='two' style="vertical-align: middle"><%=reviewdto.getDayOfRegister()%></td>
 						</tr>
 						<tr>
 							<td>내용</td>
 							<td class='two' style='vertical-align: middle'><textarea
 									cols='50' rows='20' wrap='hard' name='content' id='content'
-									required><%=noticedto.getContent()%></textarea> <script
+									required><%=reviewdto.getContent()%></textarea> <script
 									type="text/javascript">
 										$('#content').summernote({
 											height : 300,
@@ -159,10 +159,9 @@
 							<td>파일</td>
 							<td style='vertical-align: middle' id='file'>
 								<%
-									if (noticedto.getImgname() != null) {
-								%> <%=noticedto.getOrgimgname()%> <input type='button'
+									if (reviewdto.getImgname() != null) {
+								%> <%=reviewdto.getOrgimgname()%> <input type='button'
 								class='btn btn-outline-dark' value='X' onclick='deleteFile()'>
-								<input type='hidden' name='file' value='<%=noticedto.getImgname()%>'>
 								<%
 									} else {
 								%> <input type='file' id='upload' name='file'><br>
@@ -175,7 +174,7 @@
 						<tr>
 							<td colspan='2' id='button' style="text-align: right"><input
 								type='button' class="btn btn-outline-dark" value='취소'
-								onclick="location.href='board_notice_list.jsp'"> <input
+								onclick="location.href='board_review_list.jsp'"> <input
 								type='submit' class="btn btn-outline-primary" value='쓰기'></td>
 						</tr>
 					</table>

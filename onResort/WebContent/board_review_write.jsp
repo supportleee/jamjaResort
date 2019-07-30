@@ -3,8 +3,8 @@
 <%@ page import="java.io.*"%>
 <%@ page import="com.oreilly.servlet.*"%>
 <%@ page import="com.oreilly.servlet.multipart.*"%>
-<%@ page import="onResort.service.NoticeService"%>
-<%@ page import="onResort.service.NoticeServiceImpl"%>
+<%@ page import="onResort.service.Review_boardService"%>
+<%@ page import="onResort.service.Review_boardServiceImpl"%>
 <%@ page import="onResort.dto.*"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<%
-		NoticeService noticeService = new NoticeServiceImpl();
+		Review_boardService reviewService = new Review_boardServiceImpl();
 		String key = "";
 		String title = "";
 		String content = "";
@@ -34,30 +34,42 @@
 			key = multi.getParameter("key");
 			title = multi.getParameter("title");
 			content = multi.getParameter("content");
+			
 			if (key.equals("INSERT")) {
 				fileName = multi.getFilesystemName("file");
 				orgfileName = multi.getOriginalFileName("file");
-				NoticeDto dto = new NoticeDto(title, content, fileName, orgfileName);
-				noticeService.insert(dto);
-				int n = noticeService.selectOneLastest();
+				Review_boardDto dto = new Review_boardDto(title, content, fileName, orgfileName);
+				reviewService.insert(dto);
+				int n = reviewService.selectOneLastest();
+				key = Integer.toString(n);
+			} else if (key.equals("REINSERT")) {
+				fileName = multi.getFilesystemName("file");
+				orgfileName = multi.getOriginalFileName("file");
+				int rootid = Integer.parseInt(multi.getParameter("rootid"));
+				int relevel = Integer.parseInt(multi.getParameter("relevel"));
+				int recnt = Integer.parseInt(multi.getParameter("recnt"));
+				reviewService
+						.reinsert(new Review_boardDto(title, content, fileName, orgfileName, rootid, relevel, recnt));
+				int n = reviewService.selectOneLastest();
 				key = Integer.toString(n);
 			} else {
-				NoticeDto n = noticeService.selectOne(Integer.parseInt(key));
+				Review_boardDto r = reviewService.selectOne(Integer.parseInt(key));
 				if(multi.getFilesystemName("file")!=null) {
 					fileName = multi.getFilesystemName("file");
 					orgfileName = multi.getOriginalFileName("file");
 				} else {
-					fileName = n.getImgname();
-					orgfileName = n.getOrgimgname();
+					fileName = r.getImgname();
+					orgfileName = r.getOrgimgname();
 				}
-				noticeService.update(Integer.parseInt(key), new NoticeDto(title, content, fileName, orgfileName));
+				reviewService.update(Integer.parseInt(key),
+						new Review_boardDto(title, content, fileName, orgfileName));
 			}
 
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 
-		response.sendRedirect("board_notice_view.jsp?key=" + key);
+		response.sendRedirect("board_review_view.jsp?key=" + key);
 	%>
 </body>
 </html>

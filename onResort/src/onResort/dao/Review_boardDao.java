@@ -23,7 +23,7 @@ public class Review_boardDao {
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = con
-					.prepareStatement("insert into review_board (title, dayOfRegister, content, rootid, imgname, orgimgname) values (?, now(), ?, (select auto_increment from information_schema.tables where table_name='gongji' and table_schema = database()), ?, ?)");
+					.prepareStatement("insert into review_board (title, dayOfRegister, content, rootid, imgname, orgimgname) values (?, now(), ?, (select auto_increment from information_schema.tables where table_name='review_board' and table_schema = database()), ?, ?)");
 			ps.setString(1, r.getTitle());
 			ps.setString(2, r.getContent());
 			ps.setString(3, r.getImgname());
@@ -63,10 +63,12 @@ public class Review_boardDao {
 		int status = 0;
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("update review_board set title=?, content=? where id=?");
+			PreparedStatement ps = con.prepareStatement("update review_board set title=?, content=?, imgname=?, orgimgname=? where id=?");
 			ps.setString(1, r.getTitle());
 			ps.setString(2, r.getContent());
-			ps.setInt(3, r.getId());
+			ps.setString(3, r.getImgname());
+			ps.setString(4, r.getOrgimgname());
+			ps.setInt(5, r.getId());
 			status = ps.executeUpdate();
 			ps.close();
 			con.close();
