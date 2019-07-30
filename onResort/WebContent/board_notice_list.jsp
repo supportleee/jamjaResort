@@ -4,6 +4,8 @@
 <%@ page import="onResort.service.NoticeServiceImpl"%>
 <%@ page import="onResort.dto.*"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +53,7 @@
 				<%
 					NoticeService noticeService = new NoticeServiceImpl();
 					List<NoticeDto> notices = noticeService.selectAll();
+					SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 					int totCnt = 0; // 레코드 전체 수
 					int totalPage = 0; // 총 페이지 수
 					int pageCnt = 5; // 한 페이지에 보여질 게시물 수
@@ -100,7 +103,8 @@
 						%>
 						<tr>
 							<td><%=item.getId()%></td>
-							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=item.getTitle()%></a></td>
+							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=item.getTitle()%><%if(date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
+										%>&nbsp;<img src='image/new.png'><%}%></a></td>
 							<td><%=item.getViewcnt()%></td>
 							<td><%=item.getDayOfRegister()%></td>
 						</tr>
@@ -111,7 +115,7 @@
 					%>
 					<tr>
 						<td id='button_cell' colspan='4' style='text-align: right'><input
-							type='button' value='신규' class="btn btn-outline-primary"
+							type='button' value='신규'
 							onclick="location.href='board_notice_insert.jsp'"></td>
 					</tr>
 				</table>
