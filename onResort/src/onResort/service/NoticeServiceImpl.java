@@ -27,13 +27,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<NoticeDto> selectAll() {
 		List<Notice> notices = NoticeDao.getAllRecords();
 		List<NoticeDto> noticedtos = new ArrayList<NoticeDto>();
-		String title = "";
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		//SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		for(Notice notice : notices) {
-			title = "";
-			if(date.format(notice.getDayOfRegister()).equals(date.format(new Date()))) {
-				notice.setTitle(notice.getTitle() + "[NEW]");
-			}
+			//if(date.format(notice.getDayOfRegister()).equals(date.format(new Date()))) {
+			//	notice.setTitle(notice.getTitle() + "[NEW]");
+			//}
 			noticedtos.add(new NoticeDto(notice.getId(), notice.getTitle(), notice.getContent(), notice.getDayOfRegister(), notice.getImgname(), notice.getOrgimgname(), notice.getViewcnt()));
 		}
 		return noticedtos;

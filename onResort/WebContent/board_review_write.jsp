@@ -34,7 +34,7 @@
 			key = multi.getParameter("key");
 			title = multi.getParameter("title");
 			content = multi.getParameter("content");
-			
+
 			if (key.equals("INSERT")) {
 				fileName = multi.getFilesystemName("file");
 				orgfileName = multi.getOriginalFileName("file");
@@ -48,18 +48,53 @@
 				int rootid = Integer.parseInt(multi.getParameter("rootid"));
 				int relevel = Integer.parseInt(multi.getParameter("relevel"));
 				int recnt = Integer.parseInt(multi.getParameter("recnt"));
-				reviewService
-						.reinsert(new Review_boardDto(title, content, fileName, orgfileName, rootid, relevel, recnt));
+				reviewService.reinsert(
+						new Review_boardDto(title, content, fileName, orgfileName, rootid, relevel, recnt));
 				int n = reviewService.selectOneLastest();
 				key = Integer.toString(n);
 			} else {
 				Review_boardDto r = reviewService.selectOne(Integer.parseInt(key));
-				if(multi.getFilesystemName("file")!=null) {
+				if (multi.getFilesystemName("file") != null) {
+					String fileUrl = "upload/" + r.getImgname();
+					if (fileUrl == null)
+						return;
+
+					boolean fileexists = true;
+					try {
+						ServletContext cxt = getServletConfig().getServletContext();
+						String file = cxt.getRealPath(fileUrl);
+						File fileEx = new File(file);
+						if (fileEx.exists()) {
+							fileEx.delete();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					fileName = multi.getFilesystemName("file");
 					orgfileName = multi.getOriginalFileName("file");
 				} else {
-					fileName = r.getImgname();
-					orgfileName = r.getOrgimgname();
+					if (multi.getParameter("filename") != null) {
+						fileName = r.getImgname();
+						orgfileName = r.getOrgimgname();
+					} else {
+						String fileUrl = "upload/" + r.getImgname();
+						if (fileUrl == null)
+							return;
+
+						boolean fileexists = true;
+						try {
+							ServletContext cxt = getServletConfig().getServletContext();
+							String file = cxt.getRealPath(fileUrl);
+							File fileEx = new File(file);
+							if (fileEx.exists()) {
+								fileEx.delete();
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						fileName = multi.getFilesystemName("file");
+						orgfileName = multi.getOriginalFileName("file");
+					}
 				}
 				reviewService.update(Integer.parseInt(key),
 						new Review_boardDto(title, content, fileName, orgfileName));

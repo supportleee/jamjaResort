@@ -68,21 +68,6 @@
 				%>
 				<script>
 					function deleteFile() {
-				<%String fileUrl = "WebContent/upload/" + noticedto.getImgname();
-			if (fileUrl == null) {%>
-					return;
-				<%}
-			boolean fileexists = true;
-			try {
-				ServletContext cxt = getServletConfig().getServletContext();
-				String file = cxt.getRealPath(fileUrl);
-				File fileEx = new File(file);
-				if (fileEx.exists()) {
-					fileEx.delete();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}%>
 					$('#file')
 								.html(
 										"<input type='file' id='upload' name='file'><br><div id='preview' style='width: 200px; max-width: 200px;'></div>");
@@ -160,7 +145,7 @@
 							<td style='vertical-align: middle' id='file'>
 								<%
 									if (noticedto.getImgname() != null) {
-								%> <%=noticedto.getOrgimgname()%> <input type='button'
+								%> <input type='text' name='filename' style='border:0' value='<%=noticedto.getOrgimgname()%>' readonly> <input type='button'
 								class='btn btn-outline-dark' value='X' onclick='deleteFile()'>
 								<input type='hidden' name='file' value='<%=noticedto.getImgname()%>'>
 								<%
@@ -170,7 +155,7 @@
 								<%
 									}
 								%>
-							
+
 						</tr>
 						<tr>
 							<td colspan='2' id='button' style="text-align: right"><input

@@ -38,20 +38,20 @@ public class Review_boardServiceImpl implements Review_boardService {
 	public List<Review_boardDto> selectAll() {
 		List<Review_board> reviews = Review_boardDao.getAllRecords();
 		List<Review_boardDto> reviewdtos = new ArrayList<Review_boardDto>();
-		String title = "";
+		//String title = "";
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		for (Review_board review : reviews) {
-			title = "";
-			if (review.getRelevel() > 0) {
-				for (int i = 0; i < review.getRelevel(); i++) {
-					title += "-";
-				}
-				title += ">[Re]";
-				review.setTitle(title + review.getTitle());
-			}
-			if (date.format(review.getDayOfRegister()).equals(date.format(new Date()))) {
-				review.setTitle(review.getTitle() + "[NEW]");
-			}
+			//title = "";
+			//if (review.getRelevel() > 0) {
+			//	for (int i = 0; i < review.getRelevel(); i++) {
+			//		title += "  ";
+			//	}
+				
+			//	review.setTitle(review.getTitle());
+			//}
+			//if (date.format(review.getDayOfRegister()).equals(date.format(new Date()))) {
+			//	review.setTitle(review.getTitle() + "[NEW]");
+			//}
 			reviewdtos.add(new Review_boardDto(review.getId(), review.getTitle(), review.getContent(), review.getDayOfRegister(),
 					review.getImgname(), review.getOrgimgname(), review.getRootid(), review.getRelevel(), review.getRecnt(),
 					review.getViewcnt()));

@@ -43,12 +43,31 @@
 				key = Integer.toString(n);
 			} else {
 				NoticeDto n = noticeService.selectOne(Integer.parseInt(key));
-				if(multi.getFilesystemName("file")!=null) {
+				if (multi.getFilesystemName("file") != null) { // 새로운 파일 업로드 시
 					fileName = multi.getFilesystemName("file");
 					orgfileName = multi.getOriginalFileName("file");
 				} else {
-					fileName = n.getImgname();
-					orgfileName = n.getOrgimgname();
+					if (multi.getParameter("filename") != null) { // 이미 업로드한 파일 그대로 사용 시
+						fileName = n.getImgname();
+						orgfileName = n.getOrgimgname();
+					} else { // 기존 것을 지우고 새로 업로드할 경우
+						String fileUrl = "upload/" + n.getImgname();
+						if (fileUrl == null) return;
+
+						boolean fileexists = true;
+						try {
+							ServletContext cxt = getServletConfig().getServletContext();
+							String file = cxt.getRealPath(fileUrl);
+							File fileEx = new File(file);
+							if (fileEx.exists()) {
+								fileEx.delete();
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						fileName = multi.getFilesystemName("file");
+						orgfileName = multi.getOriginalFileName("file");
+					}
 				}
 				noticeService.update(Integer.parseInt(key), new NoticeDto(title, content, fileName, orgfileName));
 			}
