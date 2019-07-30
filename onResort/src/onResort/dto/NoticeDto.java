@@ -27,6 +27,7 @@ public class NoticeDto {
 		super();
 		this.id = id;
 		this.title = title;
+		this.content = content;
 		this.dayOfRegister = dayOfRegister;
 		this.imgname = imgname;
 		this.orgimgname = orgimgname;

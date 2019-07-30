@@ -44,10 +44,13 @@ public class NoticeDao {
 		int status = 0;
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("update notice set title=?, content=? where id=?");
+			PreparedStatement ps = con.prepareStatement("update notice set title=?, content=?, imgname=?, orgimgname=? where id=?");
 			ps.setString(1, n.getTitle());
 			ps.setString(2, n.getContent());
-			ps.setInt(3, n.getId());
+			ps.setString(3, n.getImgname());
+			ps.setString(4, n.getOrgimgname());
+			ps.setInt(5, n.getId());
+			
 			status = ps.executeUpdate();
 			ps.close();
 			con.close();
@@ -93,7 +96,7 @@ public class NoticeDao {
 
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from notice order by rootid desc, recnt asc;");
+			PreparedStatement ps = con.prepareStatement("select * from notice order by id desc;");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Notice n = new Notice();

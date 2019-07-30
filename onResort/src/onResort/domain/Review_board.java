@@ -23,6 +23,7 @@ public class Review_board {
 		super();
 		this.id = id;
 		this.title = title;
+		this.content = content;
 		this.dayOfRegister = dayOfRegister;
 		this.imgname = imgname;
 		this.orgimgname = orgimgname;

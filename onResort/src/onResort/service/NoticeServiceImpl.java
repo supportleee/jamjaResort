@@ -13,7 +13,8 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insert(NoticeDto noticedto) {
-		return NoticeDao.insert(new Notice(noticedto.getId(), noticedto.getTitle(), noticedto.getContent(), noticedto.getDayOfRegister(), noticedto.getImgname(), noticedto.getOrgimgname(), noticedto.getViewcnt()));
+		Notice n = new Notice(noticedto.getId(), noticedto.getTitle(), noticedto.getContent(), noticedto.getDayOfRegister(), noticedto.getImgname(), noticedto.getOrgimgname(), noticedto.getViewcnt());
+		return NoticeDao.insert(n);
 	}
 
 	@Override
