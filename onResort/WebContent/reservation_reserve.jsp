@@ -27,14 +27,14 @@
 <%
 	String room = request.getParameter("room");
 	int room_num = 0;
-	if(room==null | room=="") {
-		
+	if (room == null | room == "") {
+
 	} else {
 		room_num = Integer.parseInt(room);
 	}
-	
+
 	String resv_date = request.getParameter("resv_date");
-	%>
+%>
 
 <script type='text/javascript'>
 	$(function() {
@@ -52,14 +52,30 @@
 		$("input#resv_date").prop('max', function() {
 			// 예약일의 최댓값을 예약당일+29일까지로 설정하기
 			var today = new Date();
-			today.setDate(today.getDate()+29);
+			today.setDate(today.getDate() + 29);
 			return today.toJSON().split('T')[0];
 		});
 	});
 </script>
+<script>
+function validation() {
+	var roadAddress = $("#roadAddress").val();
+	console.log(roadAddress);
+	var detailAddress = $("#detailAddress").val();
+	console.log(detailAddress);
+	var extraAddress = $("#extraAddress").val();
+	console.log(extraAddress);
+	var result = roadAddress + " " + detailAddress + " " + extraAddress;
+	console.log(result);
+	$("#addr").val(result);
+	var addr = $("#addr").val();
+	console.log(addr);
+	return true;
+}
+</script>
 </head>
 <body>
-	
+
 	<!-- Navigation -->
 	<div id='header'></div>
 
@@ -80,7 +96,7 @@
 			<div class='col-md-12 mb-4'>
 				<h3>예약하기</h3>
 				<form name='reservation' id='reservation' method='post'
-					action='reservation_write.jsp'>
+					action='reservation_write.jsp' onsubmit='return validation();'>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>성명 :</label> <input type='text' class='form-control'
@@ -96,8 +112,8 @@
 					</div>
 					<div class='control-group form-group'>
 						<div class='controls'>
-							<label>예약방 :</label> <select name='room' rel='<%=room_num %>' class='form-control'
-								required>
+							<label>예약방 :</label> <select name='room' rel='<%=room_num%>'
+								class='form-control' required>
 								<option value="">방 선택</option>
 								<option value='1'>퍼스트클래스</option>
 								<option value='2'>비즈니스</option>
@@ -107,9 +123,32 @@
 					</div>
 					<div class='control-group form-group'>
 						<div class='controls'>
-							<label>주소 :</label> <input type='text' class='form-control'
+							<label>주소 :</label>
+							<!--  <input type='text' class='form-control'
 								id='addr' name='addr' required placeholder='주소를 입력해주세요.'
-								maxlength='50'>
+								maxlength='50'> -->
+							<div class='input-group mb-3'>
+
+								<input type='text' class='form-control' id='postcode' required
+									placeholder='우편번호' aria-label="우편번호" readonly
+									aria-describedby="addrSeachbtn">
+								<div class='input-group-append'>
+									<button class='btn btn-primary' type='button'
+										onclick='execDaumPostcode()' id='addrSeachbtn'>주소 검색</button>
+								</div>
+							</div>
+							<div class='mb-3'>
+								<input type='text' class='form-control' id='roadAddress'
+									required placeholder='도로명주소' readonly> <span id="guide"
+									style="color: #999; display: none"></span>
+							</div>
+							<div class='input-group mb-3'>
+								<input type='text' class="form-control" id='detailAddress'
+									required placeholder='상세주소' pattern="[가-힣|a-z|A-Z|0-9]{1,20}"> <input type='text'
+									class="form-control" id='extraAddress' placeholder='참고항목'
+									readonly>
+							</div>
+							<input type='text' name='addr' id='addr' style='display: none;'>
 						</div>
 					</div>
 					<div class='control-group form-group'>
@@ -123,8 +162,8 @@
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>입금자명 :</label> <input type='text' class='form-control'
-								id='in_name' name='in_name' required placeholder='입금자명을 입력해주세요.' pattern="[가-힣|a-z|A-Z]{1,10}"
-								maxlength='10'>
+								id='in_name' name='in_name' required placeholder='입금자명을 입력해주세요.'
+								pattern="[가-힣|a-z|A-Z]{1,10}" maxlength='10'>
 						</div>
 					</div>
 					<div class='control-group form-group'>
@@ -149,5 +188,64 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- daum address api -->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
+		function execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var roadAddr = data.roadAddress; // 도로명 주소 변수
+							var extraRoadAddr = ''; // 참고 항목 변수
+
+							// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+							// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+							if (data.bname !== ''
+									&& /[동|로|가]$/g.test(data.bname)) {
+								extraRoadAddr += data.bname;
+							}
+							// 건물명이 있고, 공동주택일 경우 추가한다.
+							if (data.buildingName !== ''
+									&& data.apartment === 'Y') {
+								extraRoadAddr += (extraRoadAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+							if (extraRoadAddr !== '') {
+								extraRoadAddr = ' (' + extraRoadAddr + ')';
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('postcode').value = data.zonecode;
+							document.getElementById("roadAddress").value = roadAddr;
+
+							// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+							if (roadAddr !== '') {
+								document.getElementById("extraAddress").value = extraRoadAddr;
+							} else {
+								document.getElementById("extraAddress").value = '';
+							}
+
+							var guideTextBox = document.getElementById("guide");
+							// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+							if (data.autoRoadAddress) {
+								var expRoadAddr = data.autoRoadAddress
+										+ extraRoadAddr;
+								guideTextBox.innerHTML = '(예상 도로명 주소 : '
+										+ expRoadAddr + ')';
+								guideTextBox.style.display = 'block';
+
+							} else {
+								guideTextBox.innerHTML = '';
+								guideTextBox.style.display = 'none';
+							}
+						}
+					}).open();
+		}
+	</script>
 </body>
 </html>
