@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import='onResort.service.ReservationService'%>
+<%@ page import='onResort.service.ReservationServiceImpl'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +44,43 @@
 		</ol>
 		<!-- Item Row -->
 		<div class="row">
-		<div class='col-md-12'>커밍순...</div>
+			<div class='col-md-12 mb-4'>
+				<table class='table text-center table-hover'>
+					<thead>
+						<tr>
+							<th>예약가능일</th>
+							<th>요일</th>
+							<th>퍼스트클래스</th>
+							<th>비즈니스</th>
+							<th>이코노미</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							ReservationService resvService = new ReservationServiceImpl();
+							String[][] resv_arr = resvService.selectAllReservation();
+							for (int j = 0; j < 30; j++) {
+						%><tr>
+							<%
+								for (int i = 0; i < 5; i++) {
+										if (resv_arr[i][j] == null) {
+							%><td><a href='reservation_reserve.jsp?resv_date=<%=resv_arr[0][j]%>&room=<%=i-1 %>'>예약가능</a></td>
+							<%
+								} else {
+							%>
+							<td><%=resv_arr[i][j]%></td>
+							<%
+								}
+
+									}
+							%>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<!-- /.row -->
 	</div>
