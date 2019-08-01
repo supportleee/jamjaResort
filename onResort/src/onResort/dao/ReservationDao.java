@@ -137,8 +137,10 @@ public class ReservationDao {
 		return list;
 	}
 	
-	public static String[][] getAllReservation() {
+	public static List<Reservation> getAllReservation() {
 		String[][] resv_arr = new String[5][30];
+		List<Reservation> list = new ArrayList<Reservation>();
+		
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement("select c.selected_date, r.room, r.name from reservation as r right join (select * from " + 
@@ -150,63 +152,18 @@ public class ReservationDao {
 					" (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v " + 
 					"where selected_date between current_date() and current_date()+interval 29 day)c on r.resv_date = c.selected_date order by selected_date asc, room asc;");
 			ResultSet rs = ps.executeQuery();
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String korDayOfWeek = "";
-			for(int i=0; i<30; i++) {
-				switch(cal.get(Calendar.DAY_OF_WEEK)) {
-				case 1:
-					korDayOfWeek ="일";
-					break;
-				case 2:
-					korDayOfWeek ="월";
-					break;
-				case 3:
-					korDayOfWeek ="화";
-					break;
-				case 4:
-					korDayOfWeek ="수";
-					break;
-				case 5:
-					korDayOfWeek ="목";
-					break;
-				case 6:
-					korDayOfWeek ="금";
-					break;
-				case 7:
-					korDayOfWeek ="토";
-					break;
-				}
-				resv_arr[0][i] = sdf.format(cal.getTime());
-				resv_arr[1][i] = korDayOfWeek;
-				cal.add(cal.DATE, +1);
-			}
-			int i=0;
-			String rs_date= "";
-			String rs_next_date = "";
 			while(rs.next()) {
-				rs_next_date = rs.getDate(1).toString();
-				if(!rs_date.equals("")) {
-					if(!rs_date.equals(rs_next_date)) {
-						i++;
-					}
-				}
-				if(resv_arr[0][i].equals(rs.getDate(1).toString())) {
-					if(rs.getInt(2)==1) {
-						resv_arr[2][i] = rs.getString(3);
-					} else if(rs.getInt(2)==2) {
-						resv_arr[3][i] = rs.getString(3);
-					} else if(rs.getInt(2)==3) {
-						resv_arr[4][i] = rs.getString(3);
-					}
-				}				
-				rs_date = rs_next_date;
+				Reservation r = new Reservation();
+				r.setResv_date(rs.getDate(1));
+				r.setRoom(rs.getInt(2));
+				r.setName(rs.getString(3));
+				list.add(r);
 			}
 			
 		} catch(Exception e) {
 			System.out.println(e);
 		}
-		return resv_arr;
+		return list;
 	}
 
 	public static Reservation getRecordById(Date resv_date, int room) {

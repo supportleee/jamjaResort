@@ -93,7 +93,7 @@
 				<%
 					} else {
 				%>
-				<div>
+				<div class='mb-4'>
 					[<%=resv_date%>]일 [<%
 					if (Integer.parseInt(room) == 1) {
 				%>퍼스트클래스<%

@@ -41,7 +41,61 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public String[][] selectAllReservation() {
-		return ReservationDao.getAllReservation();
+		List<Reservation> reservations = ReservationDao.getAllReservation();
+		String[][] resv_arr = new String[30][5];
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String korDayOfWeek = "";
+		for(int i=0; i<30; i++) {
+			switch(cal.get(Calendar.DAY_OF_WEEK)) {
+			case 1:
+				korDayOfWeek ="일";
+				break;
+			case 2:
+				korDayOfWeek ="월";
+				break;
+			case 3:
+				korDayOfWeek ="화";
+				break;
+			case 4:
+				korDayOfWeek ="수";
+				break;
+			case 5:
+				korDayOfWeek ="목";
+				break;
+			case 6:
+				korDayOfWeek ="금";
+				break;
+			case 7:
+				korDayOfWeek ="토";
+				break;
+			}
+			resv_arr[i][0] = sdf.format(cal.getTime());
+			resv_arr[i][1] = korDayOfWeek;
+			cal.add(cal.DATE, +1);
+		}
+		int i=0;
+		String rs_date= "";
+		String rs_next_date = "";
+		for(Reservation r : reservations) {
+			rs_next_date = r.getResv_date().toString();
+			if(!rs_date.equals("")) {
+				if(!rs_date.equals(rs_next_date)) {
+					i++;
+				}
+			}
+			if(resv_arr[i][0].equals(rs_next_date)) {
+				if(r.getRoom()==1) {
+					resv_arr[i][2] = r.getName();
+				} else if(r.getRoom()==2) {
+					resv_arr[i][3] = r.getName();
+				} else if(r.getRoom()==3) {
+					resv_arr[i][4] = r.getName();
+				}
+			}				
+			rs_date = rs_next_date;
+		}
+		return resv_arr;
 	}
 
 	@Override

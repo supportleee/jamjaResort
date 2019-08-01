@@ -59,12 +59,12 @@
 						<%
 							ReservationService resvService = new ReservationServiceImpl();
 							String[][] resv_arr = resvService.selectAllReservation();
-							for (int j = 0; j < 30; j++) {
+							for (int i = 0; i < 30; i++) {
 						%><tr>
 							<%
-								for (int i = 0; i < 5; i++) {
+								for (int j = 0; j < 5; j++) {
 										if (resv_arr[i][j] == null) {
-							%><td><a href='reservation_reserve.jsp?resv_date=<%=resv_arr[0][j]%>&room=<%=i-1 %>'>예약가능</a></td>
+							%><td><a href='reservation_reserve.jsp?resv_date=<%=resv_arr[i][0]%>&room=<%=j-1 %>'>예약가능</a></td>
 							<%
 								} else {
 							%>

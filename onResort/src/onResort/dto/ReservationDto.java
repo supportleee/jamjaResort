@@ -17,6 +17,13 @@ public class ReservationDto {
 		
 	}
 	
+	public ReservationDto(String name, Date resv_date, int room) {
+		super();
+		this.name = name;
+		this.resv_date = resv_date;
+		this.room = room;
+	}
+	
 	public ReservationDto(String name, Date resv_date, int room, String addr, String telnum, String in_name, String comment) {
 		super();
 		this.name = name;
