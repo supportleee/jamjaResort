@@ -50,16 +50,28 @@
 					noticeService.updateViewcnt(Integer.parseInt(key));
 					NoticeDto noticedto = noticeService.selectOne(Integer.parseInt(key));
 				%>
+				<script>
+					function replaceChar() {
+						var title ='<%=noticedto.getTitle()%>';
+						console.log(title);
+						title = title.replace(/</gi, '&lt;');
+						title = title.replace(/>/gi, '&gt;');
+						title = title.replace(/ /gi, '&nbsp;');
+						console.log(title);
+						td.innerHTML = title;
+					}
+				</script>
 				<form method='post' enctype='multipart/form-data'>
 					<table class='table'>
 						<tr>
 							<td>번호</td>
-							<td class='two'><input type='text' name='key' id='key' style='border:0'
-								value='<%=noticedto.getId()%>' readonly></td>
+							<td class='two'><input type='text' name='key' id='key'
+								style='border: 0' value='<%=noticedto.getId()%>' readonly></td>
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td class='two'><%=noticedto.getTitle()%></td>
+							<td class='two'><div id='td'></div></td>
+							<script>replaceChar();</script>
 						</tr>
 						<tr>
 							<td>일자</td>
@@ -87,10 +99,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td class='two' colspan='2' id='button' style='text-align:right'><input type='button' class='btn btn-outline-primary'
-								value='목록' onclick="location.href='board_notice_list.jsp'"> <input class='btn btn-outline-primary'
-								type='submit' value='수정' formaction='board_notice_update.jsp'> <input class='btn btn-outline-primary'
-								type='button' value='삭제'
+							<td class='two' colspan='2' id='button' style='text-align: right'><input
+								type='button' class='btn btn-outline-primary' value='목록'
+								onclick="location.href='board_notice_list.jsp'"> <input
+								class='btn btn-outline-primary' type='submit' value='수정'
+								formaction='board_notice_update.jsp'> <input
+								class='btn btn-outline-primary' type='button' value='삭제'
 								onclick="location.href='board_notice_delete.jsp?key=<%=noticedto.getId()%>'">
 						</tr>
 					</table>

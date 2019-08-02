@@ -50,6 +50,17 @@
 					reviewService.updateViewcnt(Integer.parseInt(key));
 					Review_boardDto reviewdto = reviewService.selectOne(Integer.parseInt(key));
 				%>
+				<script>
+					function replaceChar() {
+						var title ='<%=reviewdto.getTitle()%>';
+						console.log(title);
+						title = title.replace(/</gi, '&lt;');
+						title = title.replace(/>/gi, '&gt;');
+						title = title.replace(/ /gi, '&nbsp;');
+						console.log(title);
+						td.innerHTML = title;
+					}
+				</script>
 				<form method='post' enctype='multipart/form-data'>
 					<table class='table'>
 						<tr>
@@ -59,7 +70,8 @@
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td class='two'><%=reviewdto.getTitle()%></td>
+							<td class='two'><div id='td'></div></td>
+							<script>replaceChar();</script>
 						</tr>
 						<tr>
 							<td>일자</td>

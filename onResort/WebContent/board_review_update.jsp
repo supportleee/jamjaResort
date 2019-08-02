@@ -109,6 +109,14 @@
 
 					}
 				</script>
+				<script>
+				function replaceChar() {
+					var content = '<%=reviewdto.getContent()%>';
+					console.log(content);
+					var con = document.getElementById('content');
+					con.value = content;
+				}
+				</script>
 				<form method='post' action='board_review_write.jsp'
 					enctype='multipart/form-data'>
 					<table class='table'>
@@ -132,7 +140,7 @@
 							<td>내용</td>
 							<td class='two' style='vertical-align: middle'><textarea
 									cols='50' rows='20' wrap='hard' name='content' id='content'
-									required><%=reviewdto.getContent()%></textarea> <script
+									required></textarea> <script>replaceChar();</script> <script
 									type="text/javascript">
 										$('#content').summernote({
 											height : 300,

@@ -100,10 +100,23 @@
 								}
 								if (LineCnt > fromPT + pageCnt - 1)
 									break;
+								String replaced_title = item.getTitle();
+								if(replaced_title.contains("<")){
+									replaced_title = replaced_title.replace("<","&lt;");
+								}
+								if(replaced_title.contains(">")) {
+									replaced_title = replaced_title.replace(">","&gt;");
+								}
+								if(replaced_title.contains(" ")) {
+									replaced_title = replaced_title.replace(" ","&nbsp;");
+								}
+								System.out.println(replaced_title);
 						%>
 						<tr>
 							<td><%=item.getId()%></td>
-							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=item.getTitle()%><%if(date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
+							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=replaced_title%>
+							
+							<%if(date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
 										%>&nbsp;<img src='image/new.png'><%}%></a></td>
 							<td><%=item.getViewcnt()%></td>
 							<td><%=item.getDayOfRegister()%></td>
