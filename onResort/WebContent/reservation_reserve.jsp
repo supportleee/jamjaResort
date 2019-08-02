@@ -59,6 +59,11 @@
 </script>
 <script>
 function validation() {
+	var postcode = $("#postcode").val();
+	if(postcode==null | postcode=="") {
+		alert("주소검색을 통해 주소를 입력해주세요.");
+		return false;
+	}
 	var roadAddress = $("#roadAddress").val();
 	console.log(roadAddress);
 	var detailAddress = $("#detailAddress").val();
