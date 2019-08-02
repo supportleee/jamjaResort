@@ -101,7 +101,7 @@ function validation() {
 			<div class='col-md-12 mb-4'>
 				<h3>예약하기</h3>
 				<form name='reservation' id='reservation' method='post'
-					action='reservation_write.jsp' onsubmit='return validation();'>
+					 onsubmit='return validation();'>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>성명 :</label> <input type='text' class='form-control'
@@ -178,7 +178,8 @@ function validation() {
 								placeholder='남기실 말을 입력해주세요. (100자 이내)' maxlength='100'>
 						</div>
 					</div>
-					<button type='submit' class='btn btn-primary' id='reservationbtn'>예약하기</button>
+					
+					<button type='submit' class='btn btn-primary' id='reservationbtn' formaction='reservation_write.jsp'>예약하기</button>
 				</form>
 			</div>
 		</div>
