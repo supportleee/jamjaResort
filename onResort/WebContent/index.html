@@ -20,14 +20,59 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-$(document).ready(function() {
-	$('#header').load('header.html');
-	$('#footer').load('footer.html');
-});
+	$(document).ready(function() {
+		$('#header').load('header.jsp');
+		$('#footer').load('footer.html');
+	});
+
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+		var recent_visit = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(recent_visit) == 0) {
+				return c.substring(recent_visit.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	function checkCookie() {
+		var visit = getCookie("recent_visit");
+		if (visit != "") {
+			$('#recent_visit').text("최근 방문일: " + visit);
+			visit = timeForCookie();
+			setCookie("recent_visit", visit, 365);
+		} else {
+			$('#recent_visit').text("첫 방문입니다.");
+			visit = timeForCookie();
+			setCookie("recent_visit", visit, 365);
+		}
+	}
+
+	function timeForCookie() {
+		var d = new Date();
+		var current = d.getFullYear() + "-" + (d.getMonth() + 1) + "-"
+				+ d.getDate() + " " + d.getHours() + ":" + d.getMinutes()
+				+ ":" + d.getSeconds();
+		console.log(current);
+		return current;
+	}
 </script>
 </head>
 
-<body>
+<body onload="checkCookie()">
 
 	<!-- Navigation -->
 	<div id='header'></div>
@@ -81,8 +126,7 @@ $(document).ready(function() {
 			<div class="col-lg-4 col-sm-6 portfolio-item">
 				<div class="card h-100">
 					<a href="about_firstClassRoom.html"><img class="card-img-top"
-						src="http://3.13.15.154:8080/image/firstClassRoom.jpg"
-						alt=""></a>
+						src="http://3.13.15.154:8080/image/firstClassRoom.jpg" alt=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
 							<a href="about_firstClassRoom.html">퍼스트클래스</a>
@@ -125,6 +169,8 @@ $(document).ready(function() {
 		<!-- /.row -->
 	</div>
 	<!-- /.container -->
+	
+	<div id='recent_visit' class='container my-3 text-center font-weight-bold'></div>
 
 	<!-- Footer -->
 	<footer class="py-5 bg-dark" id='footer'>
