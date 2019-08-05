@@ -17,7 +17,7 @@ public interface ReservationService {
 	String[][] selectAllReservation();
 
 	// Update
-	int update(ReservationDto reservationdto);
+	int update(ReservationDto reservationdto, Date resv_date_before, int room_before);
 
 	int updateProcessing(Date resv_date, int room);
 

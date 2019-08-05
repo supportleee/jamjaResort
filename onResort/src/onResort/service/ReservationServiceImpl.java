@@ -15,7 +15,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int insert(ReservationDto reservationdto) {
 		Reservation r = new Reservation(reservationdto.getName(), reservationdto.getResv_date(),
-				reservationdto.getRoom(), reservationdto.getAddr(), reservationdto.getTelnum(),
+				reservationdto.getRoom(), reservationdto.getPostcode(), reservationdto.getRoadAddress(), reservationdto.getDetailAddress(),reservationdto.getExtraAddress(), reservationdto.getTelnum(),
 				reservationdto.getIn_name(), reservationdto.getComment(), reservationdto.getWrite_date(),
 				reservationdto.getProcessing());
 		return ReservationDao.insert(r);
@@ -24,7 +24,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public ReservationDto selectOne(Date resv_date, int room) {
 		Reservation r = ReservationDao.getRecordById(resv_date, room);
-		return new ReservationDto(r.getName(), r.getResv_date(), r.getRoom(), r.getAddr(), r.getTelnum(),
+		return new ReservationDto(r.getName(), r.getResv_date(), r.getRoom(), r.getPostcode(), r.getRoadAddress(), r.getDetailAddress(), r.getExtraAddress(), r.getTelnum(),
 				r.getIn_name(), r.getComment(), r.getWrite_date(), r.getProcessing());
 	}
 
@@ -33,7 +33,7 @@ public class ReservationServiceImpl implements ReservationService {
 		List<Reservation> reservations = ReservationDao.getAllRecords();
 		List<ReservationDto> dtos = new ArrayList<ReservationDto>();
 		for (Reservation r : reservations) {
-			dtos.add(new ReservationDto(r.getName(), r.getResv_date(), r.getRoom(), r.getAddr(), r.getTelnum(),
+			dtos.add(new ReservationDto(r.getName(), r.getResv_date(), r.getRoom(), r.getPostcode(), r.getRoadAddress(), r.getDetailAddress(), r.getExtraAddress(), r.getTelnum(),
 					r.getIn_name(), r.getComment(), r.getWrite_date(), r.getProcessing()));
 		}
 		return dtos;
@@ -99,11 +99,11 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int update(ReservationDto reservationdto) {
+	public int update(ReservationDto reservationdto, Date resv_date_before, int room_before) {
 		return ReservationDao.updateReservation(
 				new Reservation(reservationdto.getName(), reservationdto.getResv_date(), reservationdto.getRoom(),
-						reservationdto.getAddr(), reservationdto.getTelnum(), reservationdto.getIn_name(),
-						reservationdto.getComment(), reservationdto.getWrite_date(), reservationdto.getProcessing()));
+						reservationdto.getPostcode(), reservationdto.getRoadAddress(), reservationdto.getDetailAddress(),reservationdto.getExtraAddress(), reservationdto.getTelnum(), reservationdto.getIn_name(),
+						reservationdto.getComment(), reservationdto.getWrite_date(), reservationdto.getProcessing()),resv_date_before, room_before);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int delete(ReservationDto reservationdto) {
 		return ReservationDao.delete(new Reservation(reservationdto.getName(), reservationdto.getResv_date(), reservationdto.getRoom(),
-						reservationdto.getAddr(), reservationdto.getTelnum(), reservationdto.getIn_name(),
+				reservationdto.getPostcode(), reservationdto.getRoadAddress(), reservationdto.getDetailAddress(),reservationdto.getExtraAddress(), reservationdto.getTelnum(), reservationdto.getIn_name(),
 						reservationdto.getComment(), reservationdto.getWrite_date(), reservationdto.getProcessing()));
 	}
 
