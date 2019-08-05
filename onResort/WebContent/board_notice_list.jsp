@@ -101,23 +101,26 @@
 								if (LineCnt > fromPT + pageCnt - 1)
 									break;
 								String replaced_title = item.getTitle();
-								if(replaced_title.contains("<")){
-									replaced_title = replaced_title.replace("<","&lt;");
+								if (replaced_title.contains("<")) {
+									replaced_title = replaced_title.replace("<", "&lt;");
 								}
-								if(replaced_title.contains(">")) {
-									replaced_title = replaced_title.replace(">","&gt;");
+								if (replaced_title.contains(">")) {
+									replaced_title = replaced_title.replace(">", "&gt;");
 								}
-								if(replaced_title.contains(" ")) {
-									replaced_title = replaced_title.replace(" ","&nbsp;");
+								if (replaced_title.contains(" ")) {
+									replaced_title = replaced_title.replace(" ", "&nbsp;");
 								}
 								System.out.println(replaced_title);
 						%>
 						<tr>
 							<td><%=item.getId()%></td>
 							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=replaced_title%>
-							
-							<%if(date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
-										%>&nbsp;<img src='image/new.png'><%}%></a></td>
+
+									<%
+										if (date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
+									%>&nbsp;<img src='image/new.png'> <%
+ 	}
+ %></a></td>
 							<td><%=item.getViewcnt()%></td>
 							<td><%=item.getDayOfRegister()%></td>
 						</tr>
@@ -126,13 +129,24 @@
 						LineCnt++;
 						}
 					%>
+					<%
+						// 세션 체크해서 있으면 관리자 로그아웃 메뉴 보이기
+						String loginOK = null;
+
+						loginOK = (String) session.getAttribute("login_ok");
+						if (loginOK != null && loginOK.equals("yes")) {
+					%>
 					<tr>
 						<td id='button_cell' colspan='4' style='text-align: right'><input
 							type='button' value='신규' class="btn btn-outline-primary"
 							onclick="location.href='board_notice_insert.jsp'"></td>
 					</tr>
+					<%
+						}
+					%>
+
 				</table>
-				<div id='pageNum' style='margin-bottom:16px; text-align:center'>
+				<div id='pageNum' style='margin-bottom: 16px; text-align: center'>
 					<%
 						if (startPageNum - pageGroup > 0) {
 					%>

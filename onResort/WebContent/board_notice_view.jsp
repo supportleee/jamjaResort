@@ -52,7 +52,8 @@
 				%>
 				<script>
 					function replaceChar() {
-						var title ='<%=noticedto.getTitle()%>';
+						var title ='<%=noticedto.getTitle()%>
+					';
 						console.log(title);
 						title = title.replace(/</gi, '&lt;');
 						title = title.replace(/>/gi, '&gt;');
@@ -71,7 +72,9 @@
 						<tr>
 							<td>제목</td>
 							<td class='two'><div id='td'></div></td>
-							<script>replaceChar();</script>
+							<script>
+								replaceChar();
+							</script>
 						</tr>
 						<tr>
 							<td>일자</td>
@@ -101,11 +104,19 @@
 						<tr>
 							<td class='two' colspan='2' id='button' style='text-align: right'><input
 								type='button' class='btn btn-outline-primary' value='목록'
-								onclick="location.href='board_notice_list.jsp'"> <input
-								class='btn btn-outline-primary' type='submit' value='수정'
+								onclick="location.href='board_notice_list.jsp'"> <%
+ 	// 세션 체크해서 있으면 관리자 로그아웃 메뉴 보이기
+ 	String loginOK = null;
+
+ 	loginOK = (String) session.getAttribute("login_ok");
+ 	if (loginOK != null && loginOK.equals("yes")) {
+ %> <input class='btn btn-outline-primary' type='submit' value='수정'
 								formaction='board_notice_update.jsp'> <input
 								class='btn btn-outline-primary' type='button' value='삭제'
 								onclick="location.href='board_notice_delete.jsp?key=<%=noticedto.getId()%>'">
+								<%
+									}
+								%>
 						</tr>
 					</table>
 				</form>
