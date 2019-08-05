@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import='onResort.service.ReservationService'%>
+<%@ page import='onResort.service.ReservationServiceImpl'%>
+<%@ page import='onResort.dto.*'%>
+<%@ page import='java.util.*'%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,14 +39,25 @@
 	}
 
 	String resv_date = request.getParameter("resv_date");
-	
-	String URL = request.getParameter("jump");
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // KST -> UTC로 타임존 변경하기
+	Date date = sdf.parse(resv_date);
+
+	ReservationService service = new ReservationServiceImpl();
+	ReservationDto dto = service.selectOne(date, Integer.parseInt(room));
 %>
 
 <script type='text/javascript'>
 	$(function() {
 		// 셀렉트박스 selected 처리
-		$("select").each(
+		$("select#room").each(
+				function() {
+					var rel = $(this).attr("rel");
+					$(this).find("option[value=" + rel + "]").attr("selected",
+							"selected");
+				});
+		$("select#processing").each(
 				function() {
 					var rel = $(this).attr("rel");
 					$(this).find("option[value=" + rel + "]").attr("selected",
@@ -60,25 +76,25 @@
 	});
 </script>
 <script>
-function validation() {
-	var postcode = $("#postcode").val();
-	if(postcode==null | postcode=="") {
-		alert("주소검색을 통해 주소를 입력해주세요.");
-		return false;
+	function validation() {
+		var postcode = $("#postcode").val();
+		if (postcode == null | postcode == "") {
+			alert("주소검색을 통해 주소를 입력해주세요.");
+			return false;
+		}
+		var roadAddress = $("#roadAddress").val();
+		console.log(roadAddress);
+		var detailAddress = $("#detailAddress").val();
+		console.log(detailAddress);
+		var extraAddress = $("#extraAddress").val();
+		console.log(extraAddress);
+		var result = roadAddress + " " + detailAddress + " " + extraAddress;
+		console.log(result);
+		$("#addr").val(result);
+		var addr = $("#addr").val();
+		console.log(addr);
+		return true;
 	}
-	var roadAddress = $("#roadAddress").val();
-	console.log(roadAddress);
-	var detailAddress = $("#detailAddress").val();
-	console.log(detailAddress);
-	var extraAddress = $("#extraAddress").val();
-	console.log(extraAddress);
-	var result = roadAddress + " " + detailAddress + " " + extraAddress;
-	console.log(result);
-	$("#addr").val(result);
-	var addr = $("#addr").val();
-	console.log(addr);
-	return true;
-}
 </script>
 </head>
 <body>
@@ -102,12 +118,14 @@ function validation() {
 		<div class="row">
 			<div class='col-md-12 mb-4'>
 				<h3>예약하기</h3>
-				<form name='reservation' id='reservation' method='post'>
+				<form name='reservation' id='reservation' method='post'
+					onsubmit='return validation();'>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>성명 :</label> <input type='text' class='form-control'
 								id='name' name='name' required placeholder='성명을 입력해주세요.'
-								maxlength='10' pattern="[가-힣|a-z|A-Z]{1,10}">
+								maxlength='10' pattern="[가-힣|a-z|A-Z]{1,10}"
+								value='<%=dto.getName()%>'>
 						</div>
 					</div>
 					<div class='control-group form-group'>
@@ -118,7 +136,7 @@ function validation() {
 					</div>
 					<div class='control-group form-group'>
 						<div class='controls'>
-							<label>예약방 :</label> <select name='room' rel='<%=room_num%>'
+							<label>예약방 :</label> <select name='room' id='room' rel='<%=room_num%>'
 								class='form-control' required>
 								<option value="">방 선택</option>
 								<option value='1'>퍼스트클래스</option>
@@ -135,9 +153,9 @@ function validation() {
 								maxlength='50'> -->
 							<div class='input-group mb-3'>
 
-								<input type='text' class='form-control' id='postcode' name='postcode' required
-									placeholder='우편번호' aria-label="우편번호" readonly
-									aria-describedby="addrSeachbtn">
+								<input type='text' class='form-control' id='postcode' name='postcode'
+									value='<%=dto.getPostcode()%>' required placeholder='우편번호'
+									aria-label="우편번호" readonly aria-describedby="addrSeachbtn">
 								<div class='input-group-append'>
 									<button class='btn btn-primary' type='button'
 										onclick='execDaumPostcode()' id='addrSeachbtn'>주소 검색</button>
@@ -145,14 +163,16 @@ function validation() {
 							</div>
 							<div class='mb-3'>
 								<input type='text' class='form-control' id='roadAddress' name='roadAddress'
-									required placeholder='도로명주소' readonly> <span id="guide"
+									value='<%=dto.getRoadAddress()%>' required placeholder='도로명주소'
+									readonly> <span id="guide"
 									style="color: #999; display: none"></span>
 							</div>
 							<div class='input-group mb-3'>
 								<input type='text' class="form-control" id='detailAddress' name='detailAddress'
-									required placeholder='상세주소' pattern="[가-힣|a-z|A-Z|0-9]{1,20}"> <input type='text'
-									class="form-control" id='extraAddress' name='extraAddress' placeholder='참고항목'
-									readonly>
+									value='<%=dto.getDetailAddress()%>' required placeholder='상세주소'
+									pattern="[가-힣|a-z|A-Z|0-9]{1,20}"> <input type='text'
+									class="form-control" id='extraAddress' name='extraAddress'
+									value='<%=dto.getExtraAddress()%>' placeholder='참고항목' readonly>
 							</div>
 							<input type='text' name='addr' id='addr' style='display: none;'>
 						</div>
@@ -162,25 +182,46 @@ function validation() {
 							<label>전화번호 :</label> <input type='text' class='form-control'
 								id='telnum' name='telnum' required
 								placeholder='전화번호를 입력해주세요. ex)010-0000-0000 형태로 입력'
-								pattern="(010)-\d{3,4}-\d{4}">
+								pattern="(010)-\d{3,4}-\d{4}" value='<%=dto.getTelnum()%>'>
 						</div>
 					</div>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>입금자명 :</label> <input type='text' class='form-control'
 								id='in_name' name='in_name' required placeholder='입금자명을 입력해주세요.'
-								pattern="[가-힣|a-z|A-Z]{1,10}" maxlength='10'>
+								pattern="[가-힣|a-z|A-Z]{1,10}" maxlength='10'
+								value='<%=dto.getIn_name()%>'>
 						</div>
 					</div>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>남기실 말 :</label> <input type='text' class='form-control'
 								id='comment' name='comment'
-								placeholder='남기실 말을 입력해주세요. (100자 이내)' maxlength='100'>
+								placeholder='남기실 말을 입력해주세요. (100자 이내)' maxlength='100'
+								value='<%=dto.getComment()%>'>
 						</div>
 					</div>
-					<input type='hidden' name='jump' value='<%=URL%>'>
-					<button type='submit' class='btn btn-primary' id='reservationbtn' formaction='reservation_write.jsp'>예약하기</button>
+					<div class='control-group form-group'>
+						<div class='controls'>
+							<label>진행 상태 :</label> <select name='processing' id='processing' rel='<%=dto.getProcessing()%>'
+								class='form-control' required>
+								<option value="">진행 상태</option>
+								<option value='1'>예약 완료</option>
+								<option value='2'>예약 확정(입금완료)</option>
+								<option value='3'>환불 요청</option>
+							</select>
+						</div>
+					</div>
+					
+					<input type='hidden' name='resvDate_before' value='<%=dto.getResv_date() %>'>
+					<input type='hidden' name='room_before' value='<%=dto.getRoom() %>'>
+
+					<button type='submit' class='btn btn-primary' id='cancelBtn'
+						formaction='reservation_admin_allview.jsp'>취소</button>
+					<button type='submit' class='btn btn-primary' id='updateBtn'
+						formaction='reservation_admin_update.jsp'>수정</button>
+					<button type='submit' class='btn btn-primary' id='deleteBtn'
+						formaction='reservation_admin_delete.jsp'>삭제</button>
 				</form>
 			</div>
 		</div>

@@ -30,14 +30,17 @@ public class ReservationDao {
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = con
-					.prepareStatement("insert into reservation values (?, ?, ?, ?, ?, ?, ?, now(), 1);");
+					.prepareStatement("insert into reservation values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), 1);");
 			ps.setString(1, r.getName());
 			ps.setDate(2, new java.sql.Date(r.getResv_date().getTime()));
 			ps.setInt(3, r.getRoom());
-			ps.setString(4, r.getAddr());
-			ps.setString(5, r.getTelnum());
-			ps.setString(6, r.getIn_name());
-			ps.setString(7, r.getComment());
+			ps.setString(4, r.getPostcode());
+			ps.setString(5, r.getRoadAddress());
+			ps.setString(6, r.getDetailAddress());
+			ps.setString(7, r.getExtraAddress());
+			ps.setString(8, r.getTelnum());
+			ps.setString(9, r.getIn_name());
+			ps.setString(10, r.getComment());
 			status = ps.executeUpdate();
 			ps.close();
 			con.close();
@@ -50,26 +53,33 @@ public class ReservationDao {
 		return status;
 	}
 
-	public static int updateReservation(Reservation r) {
+	public static int updateReservation(Reservation r, Date resv_date_before, int room_before) {
 		int status = 0;
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(
-					"update reservation set name=?, resv_date=?, room=?, addr=?, telnum=?, in_name=?, comment=?, write_date=now() where resv_date=? and room=?");
+					"update reservation set name=?, resv_date=?, room=?, postcode=?, roadAddress=?, detailAddress=?, extraAddress=?, telnum=?, in_name=?, comment=?, write_date=now(), processing=? where resv_date=? and room=?");
 			ps.setString(1, r.getName());
 			ps.setDate(2, new java.sql.Date(r.getResv_date().getTime()));
 			ps.setInt(3, r.getRoom());
-			ps.setString(4, r.getAddr());
-			ps.setString(5, r.getTelnum());
-			ps.setString(6, r.getIn_name());
-			ps.setString(7, r.getComment());
-			ps.setDate(8, new java.sql.Date(r.getResv_date().getTime()));
-			ps.setInt(9, r.getRoom());
+			ps.setString(4, r.getPostcode());
+			ps.setString(5, r.getRoadAddress());
+			ps.setString(6, r.getDetailAddress());
+			ps.setString(7, r.getExtraAddress());
+			ps.setString(8, r.getTelnum());
+			ps.setString(9, r.getIn_name());
+			ps.setString(10, r.getComment());
+			ps.setInt(11, r.getProcessing());
+			ps.setDate(12, new java.sql.Date(resv_date_before.getTime()));
+			ps.setInt(13, room_before);
 			status = ps.executeUpdate();
 			ps.close();
 			con.close();
+		} catch (SQLIntegrityConstraintViolationException e) {
+			status = -2;
 		} catch (Exception e) {
 			System.out.println(e);
+			status = -1;
 		}
 		return status;
 	}
@@ -120,7 +130,10 @@ public class ReservationDao {
 				r.setName(rs.getString("name"));
 				r.setResv_date(rs.getDate("resv_date"));
 				r.setRoom(rs.getInt("room"));
-				r.setAddr(rs.getString("addr"));
+				r.setPostcode(rs.getString("postcode"));
+				r.setRoadAddress(rs.getString("roadAddress"));
+				r.setDetailAddress(rs.getString("detailAddress"));
+				r.setExtraAddress(rs.getString("extraAddress"));
 				r.setTelnum(rs.getString("telnum"));
 				r.setIn_name(rs.getString("in_name"));
 				r.setComment(rs.getString("comment"));
@@ -170,15 +183,19 @@ public class ReservationDao {
 		Reservation r = new Reservation();
 		try {
 			Connection con = getConnection();
-			PreparedStatement ps = con.prepareStatement("select * from reservation where resv_date=?, room=?;");
+			PreparedStatement ps = con.prepareStatement("select * from reservation where resv_date=? and room=?;");
 			ps.setDate(1, new java.sql.Date(resv_date.getTime()));
 			ps.setInt(2, room);
+	
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				r.setName(rs.getString("name"));
 				r.setResv_date(rs.getDate("resv_date"));
 				r.setRoom(rs.getInt("room"));
-				r.setAddr(rs.getString("addr"));
+				r.setPostcode(rs.getString("postcode"));
+				r.setRoadAddress(rs.getString("roadAddress"));
+				r.setDetailAddress(rs.getString("detailAddress"));
+				r.setExtraAddress(rs.getString("extraAddress"));
 				r.setTelnum(rs.getString("telnum"));
 				r.setIn_name(rs.getString("in_name"));
 				r.setComment(rs.getString("comment"));

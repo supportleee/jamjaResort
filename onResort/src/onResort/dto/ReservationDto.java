@@ -6,41 +6,69 @@ public class ReservationDto {
 	private String name;
 	private Date resv_date;
 	private int room;
-	private String addr;
+	private String postcode;
+	private String roadAddress;
+	private String detailAddress;
+	private String extraAddress;
 	private String telnum;
 	private String in_name;
 	private String comment;
 	private Date write_date;
 	private int processing;
-	
+
 	public ReservationDto() {
-		
+
 	}
-	
+
 	public ReservationDto(String name, Date resv_date, int room) {
 		super();
 		this.name = name;
 		this.resv_date = resv_date;
 		this.room = room;
 	}
-	
-	public ReservationDto(String name, Date resv_date, int room, String addr, String telnum, String in_name, String comment) {
+
+	public ReservationDto(String name, Date resv_date, int room, String postcode, String roadAddress,
+			String detailAddress, String extraAddress, String telnum, String in_name, String comment) {
 		super();
 		this.name = name;
 		this.resv_date = resv_date;
 		this.room = room;
-		this.addr = addr;
+		this.postcode = postcode;
+		this.roadAddress = roadAddress;
+		this.detailAddress = detailAddress;
+		this.extraAddress = extraAddress;
 		this.telnum = telnum;
 		this.in_name = in_name;
 		this.comment = comment;
 	}
 	
-	public ReservationDto(String name, Date resv_date, int room, String addr, String telnum, String in_name, String comment, Date write_date, int processing) {
+	public ReservationDto(String name, Date resv_date, int room, String postcode, String roadAddress,
+			String detailAddress, String extraAddress, String telnum, String in_name, String comment, int processing) {
 		super();
 		this.name = name;
 		this.resv_date = resv_date;
 		this.room = room;
-		this.addr = addr;
+		this.postcode = postcode;
+		this.roadAddress = roadAddress;
+		this.detailAddress = detailAddress;
+		this.extraAddress = extraAddress;
+		this.telnum = telnum;
+		this.in_name = in_name;
+		this.comment = comment;
+		this.processing = processing;
+	}
+
+	public ReservationDto(String name, Date resv_date, int room, String postcode, String roadAddress,
+			String detailAddress, String extraAddress, String telnum, String in_name, String comment, Date write_date,
+			int processing) {
+		super();
+		this.name = name;
+		this.resv_date = resv_date;
+		this.room = room;
+		this.postcode = postcode;
+		this.roadAddress = roadAddress;
+		this.detailAddress = detailAddress;
+		this.extraAddress = extraAddress;
 		this.telnum = telnum;
 		this.in_name = in_name;
 		this.comment = comment;
@@ -72,12 +100,36 @@ public class ReservationDto {
 		this.room = room;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getPostcode() {
+		return postcode;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
 	}
 
 	public String getTelnum() {
@@ -119,6 +171,5 @@ public class ReservationDto {
 	public void setProcessing(int processing) {
 		this.processing = processing;
 	}
-	
-	
+
 }
