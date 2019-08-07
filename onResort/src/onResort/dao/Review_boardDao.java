@@ -123,6 +123,38 @@ public class Review_boardDao {
 		}
 		return status;
 	}
+	
+	// 글 삭제시 자식 글까지 모두 지워지도록 하는 메소드
+	public static int deleteAllReply(Review_board r) {
+		int status = 0;
+		try {
+			Connection con = getConnection();
+			// 들어온 값의 rootid와 같고 recnt보다 큰 목록을 조회
+			PreparedStatement ps = con.prepareStatement("select title, rootid, relevel, recnt from review_board where rootid=? and recnt>? order by recnt asc;");
+			ps.setInt(1, r.getRootid());
+			ps.setInt(2, r.getRecnt());
+			ResultSet rs = ps.executeQuery();
+			int finalChild = r.getRecnt();
+			while(rs.next()) { 
+				if(rs.getInt("relevel")<=r.getRelevel()) { // 조회한 값에서 삭제하려는 글의 relevel보다 작거나 같은 relevel을 만나면 while문 나가기
+					break;
+				}
+				finalChild = rs.getInt("recnt"); // recnt값으로 finalChild의 recnt 넣기
+				
+			}
+			// rootid가 같고 recnt의 범위가 삭제하려는 글의 recnt부터 finalChild까지인 기록들 삭제하기
+			ps = con.prepareStatement("delete from review_board where rootid=? and recnt between ? and ?;");
+			ps.setInt(1, r.getRootid());
+			ps.setInt(2, r.getRecnt());
+			ps.setInt(3, finalChild);
+			status = ps.executeUpdate();
+			ps.close();
+			con.close();
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		return status;
+	}
 
 	public static List<Review_board> getAllRecords() {
 		List<Review_board> list = new ArrayList<Review_board>();

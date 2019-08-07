@@ -87,12 +87,12 @@ public class Review_boardServiceImpl implements Review_boardService {
 	@Override
 	public int delete(int id) {
 		Review_board review = Review_boardDao.getRecordById(id);
-		return Review_boardDao.delete(review);
+		return Review_boardDao.deleteAllReply(review);
 	}
 
 	@Override
 	public int delete(Review_boardDto reviewdto) {
-		return Review_boardDao.delete(new Review_board(reviewdto.getId(), reviewdto.getTitle(),
+		return Review_boardDao.deleteAllReply(new Review_board(reviewdto.getId(), reviewdto.getTitle(),
 				reviewdto.getContent(), reviewdto.getDayOfRegister(), reviewdto.getImgname(), reviewdto.getOrgimgname(),
 				reviewdto.getRootid(), reviewdto.getRelevel(), reviewdto.getRecnt(), reviewdto.getViewcnt()));
 	}
