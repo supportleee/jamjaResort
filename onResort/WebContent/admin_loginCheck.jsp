@@ -54,7 +54,7 @@
 	%>
 	<script>
 		alert("아이디 혹은 비밀번호 오류");
-		location.href = 'admin_login.jsp';
+		location.href = 'admin_login.jsp?jump=reservation_admin_allview.jsp';
 	</script>
 	<%
 		}

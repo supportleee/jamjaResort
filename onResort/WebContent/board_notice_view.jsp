@@ -52,8 +52,7 @@
 				%>
 				<script>
 					function replaceChar() {
-						var title ='<%=noticedto.getTitle()%>
-					';
+						var title ='<%=noticedto.getTitle()%>';
 						console.log(title);
 						title = title.replace(/</gi, '&lt;');
 						title = title.replace(/>/gi, '&gt;');
