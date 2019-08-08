@@ -66,7 +66,7 @@
 				<table class='table text-center table-hover'>
 					<thead>
 						<tr>
-							<th>예약가능일</th>
+							<th style='font-size:inhereit;'>예약가능일</th>
 							<th>요일</th>
 							<th>퍼스트클래스</th>
 							<th>비즈니스</th>
