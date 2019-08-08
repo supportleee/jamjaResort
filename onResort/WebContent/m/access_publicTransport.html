@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>onResort</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- google Map  -->
+
+<script>
+	function initialize() {
+		var myLatlng = new google.maps.LatLng(37.385834, 127.121173); // 좌표값
+		var mapOptions = {
+			zoom : 17, // 지도 확대레벨 조정
+			center : myLatlng,
+			mapTypeId : google.maps.MapTypeId.ROADMAP
+		}
+		var map = new google.maps.Map(document.getElementById('map_canvas'),
+				mapOptions);
+		var marker = new google.maps.Marker({
+			position : myLatlng,
+			map : map,
+			title : "온리조트" // 마커에 마우스를 올렸을때 간략하게 표기될 설명글
+		});
+	}
+	window.onload = initialize;
+</script>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+	<!-- Page Content -->
+	<div class="container" style='margin-top:45px'>
+
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="my-3 mb-3">
+			찾아오기 <small style='font-size:60%;'>교통수단이용</small>
+		</h1>
+
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">메인</li>
+			<li class="breadcrumb-item active">교통수단이용</li>
+		</ol>
+
+			<!-- Contact Details Column -->
+			<div class="col-lg-12 mb-4">
+				<dl class="row">
+					<dt class="col-sm-12">
+						<h3 class="my-3">대중교통 안내</h3>
+					</dt>
+					<dt class="col-sm-12">지하철</dt>
+					<dd class="col-sm-12"><ul><li>분당선 서현역 4번출구(AK프라자 2번 출구)에서 성남교육지원청 방향으로 도보 3분</li></ul></dd>
+					<dt class="col-sm-12">버스</dt>
+					<dd class="col-sm-12"><ul><li>일반 116, 222, 직행3500 이용 시</li></ul></dd>
+					<dd class="col-sm-12">서현역, AK프라자 정류장(분당구청 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
+					<dd class="col-sm-12"><ul><li>일반116, 222, 직행3500, 마을3-1, 32, 71, 74, 602, 602-1, 602-1C, 602-2 이용시</li></ul></dd>
+					<dd class="col-sm-12">서현역,AK프라자 정류장(이매촌 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
+				</dl>
+			</div>
+		</div>
+		<!-- /.row -->
+
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>
