@@ -102,7 +102,7 @@ function validation() {
 		<div class="row">
 			<div class='col-md-12 mb-4'>
 				<h3>예약하기</h3>
-				<form name='reservation' id='reservation' method='post'>
+				<form name='reservation' id='reservation' method='post' onsubmit='return validation();' action='reservation_write.jsp'>
 					<div class='control-group form-group'>
 						<div class='controls'>
 							<label>성명 :</label> <input type='text' class='form-control'
@@ -180,7 +180,7 @@ function validation() {
 						</div>
 					</div>
 					<input type='hidden' name='jump' value='<%=URL%>'>
-					<button type='submit' class='btn btn-primary' id='reservationbtn' formaction='reservation_write.jsp'>예약하기</button>
+					<button type='submit' class='btn btn-primary' id='reservationbtn'>예약하기</button>
 				</form>
 			</div>
 		</div>
