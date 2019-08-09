@@ -119,7 +119,7 @@
 				</form>
 			</div>
 		</div>
-		<!--  -->
+		<!-- 파일 업로드 시 미리보기를 위한 script -->
 		<script>
 			var upload = document.querySelector('#upload');
 			var preview = document.querySelector('#preview');

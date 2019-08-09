@@ -4,8 +4,7 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  <!-- 모바일 넓이에 맞게 출력되도록 하는 태그 -->
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -18,8 +17,7 @@
 <link href="css/modern-business.css" rel="stylesheet">
 
 <!-- google Map  -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSsNKNC4QekocLNCeOJib1rj3Gr_10JdI&sensor=false&language=en"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSsNKNC4QekocLNCeOJib1rj3Gr_10JdI&sensor=false&language=en"></script>
 
 <script>
 	function initialize() {
@@ -37,16 +35,17 @@
 			title : "온리조트" // 마커에 마우스를 올렸을때 간략하게 표기될 설명글
 		});
 	}
-	window.onload = initialize;
+	window.onload = initialize; // 창이 load되면 initialize()메소드 호출
 </script>
-
+<!-- jquery -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-$(document).ready(function() {
-	$('#header').load('header.jsp');
-	$('#footer').load('footer.html');
-});
+	// header, footer 설정
+	$(document).ready(function() {
+		$('#header').load('header.jsp');
+		$('#footer').load('footer.html');
+	});
 </script>
 
 </head>
@@ -74,7 +73,7 @@ $(document).ready(function() {
 			<!-- Map Column -->
 			<div class="col-lg-12 mb-4">
 				<!-- Embedded Google Map -->
-				<div id="map_canvas" style="width: 100%; height: 600px; margin:0px;"></div>
+				<div id="map_canvas" style="width: 100%; height: 600px; margin: 0px;"></div>
 			</div>
 
 			<!-- Contact Details Column -->
@@ -84,24 +83,34 @@ $(document).ready(function() {
 						<h3 class="my-3">대중교통 안내</h3>
 					</dt>
 					<dt class="col-sm-12">지하철</dt>
-					<dd class="col-sm-12"><ul><li>분당선 서현역 4번출구(AK프라자 2번 출구)에서 성남교육지원청 방향으로 도보 3분</li></ul></dd>
+					<dd class="col-sm-12">
+						<ul>
+							<li>분당선 서현역 4번출구(AK프라자 2번 출구)에서 성남교육지원청 방향으로 도보 3분</li>
+						</ul>
+					</dd>
 					<dt class="col-sm-12">버스</dt>
-					<dd class="col-sm-12"><ul><li>일반 116, 222, 직행3500 이용 시</li></ul></dd>
+					<dd class="col-sm-12">
+						<ul>
+							<li>일반 116, 222, 직행3500 이용 시</li>
+						</ul>
+					</dd>
 					<dd class="col-sm-12">서현역, AK프라자 정류장(분당구청 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
-					<dd class="col-sm-12"><ul><li>일반116, 222, 직행3500, 마을3-1, 32, 71, 74, 602, 602-1, 602-1C, 602-2 이용시</li></ul></dd>
+					<dd class="col-sm-12">
+						<ul>
+							<li>일반116, 222, 직행3500, 마을3-1, 32, 71, 74, 602, 602-1, 602-1C, 602-2 이용시</li>
+						</ul>
+					</dd>
 					<dd class="col-sm-12">서현역,AK프라자 정류장(이매촌 방향) 하차. 분당구청 방향으로 직진 후 성남교육지원청 방향으로 우회전하여 도보 2분</dd>
 				</dl>
 			</div>
 		</div>
 		<!-- /.row -->
 
-
 	</div>
 	<!-- /.container -->
 
 	<!-- Footer -->
 	<footer class="py-5 bg-dark" id='footer'>
-		<!-- /.container -->
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->

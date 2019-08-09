@@ -4,8 +4,7 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  <!-- 모바일 넓이에 맞게 출력되도록 하는 태그 -->
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -18,8 +17,7 @@
 <link href="css/modern-business.css" rel="stylesheet">
 
 <!-- google Map  -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSsNKNC4QekocLNCeOJib1rj3Gr_10JdI&sensor=false&language=en"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSsNKNC4QekocLNCeOJib1rj3Gr_10JdI&sensor=false&language=en"></script>
 
 <script>
 	function initialize() {
@@ -37,16 +35,17 @@
 			title : "온리조트" // 마커에 마우스를 올렸을때 간략하게 표기될 설명글
 		});
 	}
-	window.onload = initialize;
+	window.onload = initialize; // 창이 load되면 initialize()메소드 호출
 </script>
-
+<!-- jquery -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
-$(document).ready(function() {
-	$('#header').load('header.jsp');
-	$('#footer').load('footer.html');
-});
+	// header, footer 설정
+	$(document).ready(function() {
+		$('#header').load('header.jsp');
+		$('#footer').load('footer.html');
+	});
 </script>
 
 </head>
@@ -74,8 +73,7 @@ $(document).ready(function() {
 			<!-- Map Column -->
 			<div class="col-lg-12 mb-4">
 				<!-- Embedded Google Map -->
-				<div id="map_canvas"
-					style="width: 100%; height: 600px; margin: 0px;"></div>
+				<div id="map_canvas" style="width: 100%; height: 600px; margin: 0px;"></div>
 			</div>
 
 			<!-- Contact Details Column -->
@@ -85,20 +83,11 @@ $(document).ready(function() {
 						<h3 class="my-3">자동차로 오시는 길</h3>
 					</dt>
 					<dt class="col-sm-12 my-2">광화문/이태원 방향</dt>
-					<dd class="col-sm-12 my-2">남산 3호 터널 경유 → 이태원 방향으로 진행하다가 한남동
-						사거리에서 우회전 → (구)단국대 앞을 지나 한남대교 진입 → 한남대교 남단에서 종합운동장 방향 출구로 진입 →
-						올림픽대로 잠실종합운동장 방향 직진 → 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파,
-						성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입
-						→ 정문 도착</dd>
+					<dd class="col-sm-12 my-2">남산 3호 터널 경유 → 이태원 방향으로 진행하다가 한남동 사거리에서 우회전 → (구)단국대 앞을 지나 한남대교 진입 → 한남대교 남단에서 종합운동장 방향 출구로 진입 → 올림픽대로 잠실종합운동장 방향 직진 → 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입 → 정문 도착</dd>
 					<dt class="col-sm-12 my-2">장충동/옥수동/금호동 방향</dt>
-					<dd class="col-sm-12 my-2">동호대교 진입 → 동호대교 남단에서 압구정 방향 출구 진입 →
-						압구정 사거리에서 교각을 중심으로 좌로 U턴 → 맨 우측 차선 올림픽 대로 방향으로 진입 후 잠실종합운동장 방향 직진
-						→ 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째
-						사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입 → 정문 도착</dd>
+					<dd class="col-sm-12 my-2">동호대교 진입 → 동호대교 남단에서 압구정 방향 출구 진입 → 압구정 사거리에서 교각을 중심으로 좌로 U턴 → 맨 우측 차선 올림픽 대로 방향으로 진입 후 잠실종합운동장 방향 직진 → 종합운동장을 조금 지나 성남, 잠실 방향 출구 진입 → 잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입 → 정문 도착</dd>
 					<dt class="col-sm-12 my-2">강남 방향</dt>
-					<dd class="col-sm-12 my-2">역삼역 방향 테헤란로 진입 → 잠실 방향으로 직진 →
-						잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛
-						주차) 방향으로 진입 → 정문 도착</dd>
+					<dd class="col-sm-12 my-2">역삼역 방향 테헤란로 진입 → 잠실 방향으로 직진 → 잠실사거리에서 송파, 성남방향으로 우회전 후 첫번째 사거리에서 송파구청방향으로 좌회전 → 지하차도 우측(에비뉴엘 발렛 주차) 방향으로 진입 → 정문 도착</dd>
 					<dt class="col-sm-12 my-2">네비게이션 검색시</dt>
 					<dd class="col-sm-12 my-2">네비게이션으로 검색시 ”온리조트”로 검색해 주세요.</dd>
 					<dt class="col-sm-12 my-2">※ 주차구간 안내</dt>
@@ -114,7 +103,6 @@ $(document).ready(function() {
 
 	<!-- Footer -->
 	<footer class="py-5 bg-dark" id='footer'>
-		<!-- /.container -->
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
