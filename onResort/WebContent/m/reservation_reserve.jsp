@@ -79,7 +79,7 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="my-2 mb-3">
-			예약하기 <small>예약하기</small>
+			예약하기 <small style='font-size: 60%;'>예약하기</small>
 		</h1>
 
 		<ol class="breadcrumb">

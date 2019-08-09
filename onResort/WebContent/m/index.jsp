@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv='Content-Type' content='text/html;charset=utf-8'>
-<meta name='viewport' content='user-scalable=no, width=device-width'>
+<meta name='viewport'
+	content='user-scalable=no, width=device-width, initial-scale=1, shrink-to-fit=no'>
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='black'>
 <meta http-equiv='Cache-Control' content='no-cache'>
@@ -23,7 +24,7 @@
 	}
 	window.addEventListener(orientationEvent, function() {
 		// alert("회전했어요!");
-		location.href='#';
+		location.href = '#';
 	}, false);
 
 	var prevScreen = 0;
@@ -97,6 +98,15 @@
 			}
 		}
 	}
+	
+	window.addEventListener("load", function() {
+
+		setTimeout(scrollTo, 0, 0, 1);
+
+	}, false);
+
+
+
 </script>
 <style type='text/css'>
 li {
@@ -121,8 +131,8 @@ ul {
 	font-size: 16px
 }
 
-tr, td{
-width:80vh;
+tr, td {
+	width: 80vh;
 }
 </style>
 </head>
@@ -141,7 +151,8 @@ width:80vh;
 				style='background-color: #212529; color: white; height: 40px; width: 70%; float: left; display: flex; align-items: center; justify-content: center;'>
 				ONResort</div>
 			<div id='header3'
-				style='background-color: #212529; height: 40px; width: 15%; float: left;' onclick='ScreenShow(0);'>
+				style='background-color: #212529; height: 40px; width: 15%; float: left;'
+				onclick='ScreenShow(0);'>
 				<img src='home_btn.png' width='30px' height='30px'
 					style='vertical-align: -webkit-baseline-middle'>
 			</div>
@@ -219,10 +230,12 @@ width:80vh;
 			</div>
 
 			<div id='s5' style='display: none;'>
-			<jsp:include page='access_publicTransport.html' /></div>
+				<jsp:include page='access_publicTransport.html' />
+			</div>
 
 			<div id='s6' style='display: none;'>
-			<jsp:include page='access_privateCar.html' /></div>
+				<jsp:include page='access_privateCar.html' />
+			</div>
 
 			<div id='s7' style='display: none;'>
 				<jsp:include page='spot_mountain.html' />
@@ -231,70 +244,74 @@ width:80vh;
 			<div id='s8' style='display: none;'>
 				<jsp:include page='spot_beach.html' />
 			</div>
+
 			<div id='s9' style='display: none;'>
 				<jsp:include page='spot_hotSpring.html' />
 			</div>
-
-			<div id='s10' style='display: none;'>
-				<iframe src='reservation_view.jsp' style='width:100vw; height:80vh' frameborder='0' border='0'
-					bordercolor='white' marginwidth='0'
-					marginheight='0' scrolling='yes' style='margin-top:45px'></iframe>
-			</div>
-
-			<div id='s11' style='display: none;'>
-				<iframe src='reservation_reserve.jsp' style='width:100vw; height:80vh' frameborder='0' border='0'
-					bordercolor='white'  marginwidth='0'
-					marginheight='0' scrolling='yes'></iframe>
-			</div>
-
-			<div id='s12' style='display: none;'>
-			<iframe src='board_notice_list.jsp' style='width:100vw; height:80vh' frameborder='0' border='0'
-					bordercolor='white'  marginwidth='0'
-					marginheight='0' scrolling='yes'></iframe>
-			</div>
-
-			<div id='s13' style='display: none;'>
-			<iframe src='board_review_list.jsp' style='width:100vw; height:80vh' frameborder='0' border='0'
-					bordercolor='white'  marginwidth='0'
-					marginheight='0' scrolling='yes'></iframe>
-			</div>
 		</div>
+
+		<div id='s10' style='display: none;'>
+			<iframe src='reservation_view.jsp' style='width: 100vw; height: 80vh'
+				frameborder='0' border='0' bordercolor='white' marginwidth='0'
+				marginheight='0' scrolling='yes' style='margin-top:45px'></iframe>
+		</div>
+
+		<div id='s11' style='display: none;'>
+			<iframe src='reservation_reserve.jsp'
+				style='width: 100vw; height: 80vh' frameborder='0' border='0'
+				bordercolor='white' marginwidth='0' marginheight='0' scrolling='yes'></iframe>
+		</div>
+
+		<div id='s12' style='display: none;'>
+			<iframe src='board_notice_list.jsp'
+				style='width: 100vw; height: 80vh' frameborder='0' border='0'
+				bordercolor='white' marginwidth='0' marginheight='0' scrolling='yes'></iframe>
+		</div>
+
+		<div id='s13' style='display: none;'>
+			<iframe src='board_review_list.jsp'
+				style='width: 100vw; height: 80vh' frameborder='0' border='0'
+				bordercolor='white' marginwidth='0' marginheight='0' scrolling='yes'></iframe>
+		</div>
+
 
 
 
 		<div
-			style='position: fixed; bottom: 0px; background-color: #212529; height: 60px; width: 100%; text-align:center'>
+			style='position: fixed; bottom: 0px; background-color: #212529; height: 60px; width: 100%; text-align: center'>
 			<div id='m0' onclick='fncShow(0);'
 				style='position: absolute; left: 0%; color: white; background-color: #212529; height: 60px; width: 20%; float: left;'>
-				<img src='m1_btn.png' width=30px height=30px style='margin-top: 8%;'><br>
-				<font size=2>리조트소개</font>
+				<img src='m1_btn.png' width=30px height=30px
+					style='margin-top: 8px;'><br> <font size=2>리조트소개</font>
 			</div>
 
 			<div id='m1' onclick='fncShow(1);'
 				style='position: absolute; left: 20%; color: white; background-color: #212529; height: 60px; width: 20%; float: left;'>
-				<img src='m2_btn.png' width=30px height=30px style='margin-top: 8%;'><br>
-				<font size=2>찾아오기</font>
+				<img src='m2_btn.png' width=30px height=30px
+					style='margin-top: 8px;'><br> <font size=2>찾아오기</font>
 			</div>
 
 			<div id='m2' onclick='fncShow(2);'
 				style='position: absolute; left: 40%; color: white; background-color: #212529; height: 60px; width: 20%; float: left;'>
-				<img src='m3_btn.png' width=30px height=30px style='margin-top: 8%;'><br>
-				<font size=2>주변명소</font>
+				<img src='m3_btn.png' width=30px height=30px
+					style='margin-top: 8px;'><br> <font size=2>주변명소</font>
 			</div>
 
 			<div id='m3' onclick='fncShow(3);'
 				style='position: absolute; color: white; left: 60%; background-color: #212529; height: 60px; width: 20%; float: left;'>
-				<img src='m4_btn.png' width=30px height=30px style='margin-top: 8%;'><br>
-				<font size=2>예약하기</font>
+				<img src='m4_btn.png' width=30px height=30px
+					style='margin-top: 8px;'><br> <font size=2>예약하기</font>
 			</div>
 
 			<div id='m4' onclick='fncShow(4);'
 				style='position: absolute; left: 80%; color: white; background-color: #212529; height: 60px; width: 20%; float: left;'>
-				<img src='m5_btn.png' width=30px height=30px style='margin-top: 8%;'><br>
-				<font size=2>펜션소식</font>
+				<img src='m5_btn.png' width=30px height=30px
+					style='margin-top: 8px;'><br> <font size=2>펜션소식</font>
 			</div>
 		</div>
-		<script>ScreenShow(0);</script>
+		<script>
+			ScreenShow(0);
+		</script>
 	</div>
 
 </body>

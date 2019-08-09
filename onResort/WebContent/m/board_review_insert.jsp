@@ -64,7 +64,7 @@
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="my-2 mb-3">
-			펜션소식 <small>이용후기</small>
+			펜션소식 <small style='font-size: 60%;'>이용후기</small>
 		</h1>
 
 		<ol class="breadcrumb">

@@ -24,7 +24,7 @@
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="my-2 mb-3">
-			펜션소식 <small>이용후기</small>
+			펜션소식 <small style='font-size: 60%;'>이용후기</small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -69,7 +69,7 @@
 							<td class='two'><%=reviewdto.getDayOfRegister()%></td>
 						</tr>
 						<tr>
-							<td>조회수</td>
+							<td>조회</td>
 							<td class='two'><%=reviewdto.getViewcnt()%></td>
 						</tr>
 						<tr>

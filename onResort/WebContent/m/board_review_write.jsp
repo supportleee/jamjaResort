@@ -25,7 +25,7 @@
 		String fileName = "";
 		String orgfileName = "";
 
-		String uploadPath = request.getRealPath("../upload");
+		String uploadPath = request.getRealPath("upload");
 
 		try {
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, 10 * 1024 * 1024, "utf-8",
@@ -42,66 +42,11 @@
 				reviewService.insert(dto);
 				int n = reviewService.selectOneLastest();
 				key = Integer.toString(n);
-			} else if (key.equals("REINSERT")) {
-				fileName = multi.getFilesystemName("file");
-				orgfileName = multi.getOriginalFileName("file");
-				int rootid = Integer.parseInt(multi.getParameter("rootid"));
-				int relevel = Integer.parseInt(multi.getParameter("relevel"));
-				int recnt = Integer.parseInt(multi.getParameter("recnt"));
-				reviewService.reinsert(
-						new Review_boardDto(title, content, fileName, orgfileName, rootid, relevel, recnt));
-				int n = reviewService.selectOneLastest();
-				key = Integer.toString(n);
-			} else {
-				Review_boardDto r = reviewService.selectOne(Integer.parseInt(key));
-				if (multi.getFilesystemName("file") != null) {
-					String fileUrl = "upload/" + r.getImgname();
-					if (fileUrl == null)
-						return;
-
-					boolean fileexists = true;
-					try {
-						ServletContext cxt = getServletConfig().getServletContext();
-						String file = cxt.getRealPath(fileUrl);
-						File fileEx = new File(file);
-						if (fileEx.exists()) {
-							fileEx.delete();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					fileName = multi.getFilesystemName("file");
-					orgfileName = multi.getOriginalFileName("file");
-				} else {
-					if (multi.getParameter("filename") != null) {
-						fileName = r.getImgname();
-						orgfileName = r.getOrgimgname();
-					} else {
-						String fileUrl = "upload/" + r.getImgname();
-						if (fileUrl == null)
-							return;
-
-						boolean fileexists = true;
-						try {
-							ServletContext cxt = getServletConfig().getServletContext();
-							String file = cxt.getRealPath(fileUrl);
-							File fileEx = new File(file);
-							if (fileEx.exists()) {
-								fileEx.delete();
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-						fileName = multi.getFilesystemName("file");
-						orgfileName = multi.getOriginalFileName("file");
-					}
-				}
-				reviewService.update(Integer.parseInt(key),
-						new Review_boardDto(title, content, fileName, orgfileName));
 			}
 
 		} catch (Exception e) {
 			e.getStackTrace();
+			System.out.println(e);
 		}
 
 		response.sendRedirect("board_review_view.jsp?key=" + key);

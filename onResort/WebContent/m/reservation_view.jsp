@@ -16,7 +16,15 @@
 
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.table thead th {
+	vertical-align: middle;
+}
 
+.table td, .table th {
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
@@ -26,7 +34,7 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="my-2 mb-3">
-			예약하기 <small>예약상황</small>
+			예약하기 <small style='font-size: 60%;'>예약상황</small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -39,11 +47,14 @@
 				<table class='table text-center table-hover'>
 					<thead>
 						<tr>
-							<th>예약가능일</th>
+							<th>날짜</th>
 							<th>요일</th>
-							<th>퍼스트클래스</th>
-							<th>비즈니스</th>
-							<th>이코노미</th>
+							<th>퍼스트<br>클래스
+							</th>
+							<th>비즈<br>니스
+							</th>
+							<th>이코<br>노미
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,14 +65,22 @@
 						%><tr>
 							<%
 								for (int j = 0; j < 5; j++) {
-										if (resv_arr[i][j] == null) {
-							%><td><a href='reservation_reserve.jsp?resv_date=<%=resv_arr[i][0]%>&room=<%=j-1 %>'>예약가능</a></td>
+										if (j == 0) {
+							%>
+							<td><%=resv_arr[i][j].substring(5)%></td>
+							<%
+								} else {
+											if (resv_arr[i][j] == null) {
+							%><td><a
+								href='reservation_reserve.jsp?resv_date=<%=resv_arr[i][0]%>&room=<%=j - 1%>'>예약<br>가능
+							</a></td>
 							<%
 								} else {
 							%>
 							<td><%=resv_arr[i][j]%></td>
 							<%
 								}
+										}
 
 									}
 							%>

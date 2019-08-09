@@ -21,7 +21,30 @@
 
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+.table {
+	table-layout: fixed;
+}
 
+.table .title {
+	width: 40vw;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-right: .75rem;
+	text-align: left;
+}
+
+.table td, .table th {
+	vertical-align: middle;
+	text-align: center;
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: .75rem;
+}
+</style>
 
 </head>
 <body>
@@ -29,7 +52,7 @@
 	<div class="container">
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="my-2 mb-3">
-			펜션소식 <small>펜션소식</small>
+			펜션소식 <small style='font-size: 60%;'>펜션소식</small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -75,8 +98,8 @@
 					<thead>
 						<tr>
 							<th>번호</th>
-							<th>제목</th>
-							<th>조회수</th>
+							<th style='width: 50vw'>제목</th>
+							<th>조회</th>
 							<th>등록일</th>
 						</tr>
 					<thead>
@@ -102,16 +125,17 @@
 								System.out.println(replaced_title);
 						%>
 						<tr>
-							<td><%=item.getId()%></td>
-							<td><a href="board_notice_view.jsp?key=<%=item.getId()%>"><%=replaced_title%>
+							<td class='num'><%=item.getId()%></td>
+							<td class='title'><a
+								href="board_notice_view.jsp?key=<%=item.getId()%>"><%=replaced_title%>
 
 									<%
 										if (date.format(item.getDayOfRegister()).equals(date.format(new Date()))) {
 									%>&nbsp;<img src='../image/new.png'> <%
  	}
  %></a></td>
-							<td><%=item.getViewcnt()%></td>
-							<td><%=item.getDayOfRegister()%></td>
+							<td class='viewcnt'><%=item.getViewcnt()%></td>
+							<td class='regdate'><%=item.getDayOfRegister()%></td>
 						</tr>
 					</tbody>
 					<%
