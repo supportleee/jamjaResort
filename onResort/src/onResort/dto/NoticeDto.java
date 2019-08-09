@@ -1,15 +1,17 @@
+// 공지게시판 service단에서 사용되는 DTO
+
 package onResort.dto;
 
 import java.util.Date;
 
 public class NoticeDto {
-	private int id;
-	private String title;
-	private String content;
-	private Date dayOfRegister;
-	private String imgname;
-	private String orgimgname;
-	private int viewcnt;
+	private int id; // 게시글 번호
+	private String title; // 게시글 제목
+	private String content; // 게시글 내용
+	private Date dayOfRegister; // 게시글 등록일
+	private String imgname; // 게시글에 업로드된 파일 이름(중복문제 처리 후)
+	private String orgimgname; // 게시글에 업로드된 파일 원본 이름
+	private int viewcnt; // 조회수
 
 	public NoticeDto() {
 	}

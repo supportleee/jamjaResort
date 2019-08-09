@@ -1,13 +1,16 @@
+// admininfo domain(DB와 1:1)
+
 package onResort.domain;
 
 public class AdminInfo {
-	private String id;
-	private String pw;
+	private String id; // 관리자계정 id 변수
+	private String pw; // 관리자계정 비밀번호
 
 	public AdminInfo() {
 
 	}
 
+	// 생성자
 	public AdminInfo(String id, String pw) {
 		super();
 		this.id = id;

@@ -1,18 +1,20 @@
+// 이용후기 service단에서 사용되는 DTO
+
 package onResort.dto;
 
 import java.util.Date;
 
 public class Review_boardDto {
-	private int id;
-	private String title;
-	private String content;
-	private Date dayOfRegister;
-	private String imgname;
-	private String orgimgname;
-	private int rootid;
-	private int relevel;
-	private int recnt;
-	private int viewcnt;
+	private int id; // 게시글 번호
+	private String title; // 게시글 제목
+	private String content; // 게시글 내용
+	private Date dayOfRegister; // 게시글 등록일자
+	private String imgname; // 게시글에 업로드한 파일 이름(중복문제 처리 후 이름)
+	private String orgimgname; // 게시글에 업로드한 파일 이름(원본)
+	private int rootid; // 답글 작성시 원글 id(새 글일 경우 본인 id와 같고 답글일 경우 답글달 원글의 id)
+	private int relevel; // 답글의 깊이
+	private int recnt; // 원글포함 답글의 순서
+	private int viewcnt; // 조회수
 
 	public Review_boardDto() {
 

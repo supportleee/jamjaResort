@@ -1,20 +1,22 @@
+// 예약정보 domain (DB와 1:1 대응)
+
 package onResort.domain;
 
 import java.util.Date;
 
 public class Reservation {
-	private String name;
-	private Date resv_date;
-	private int room;
-	private String postcode;
-	private String roadAddress;
-	private String detailAddress;
-	private String extraAddress;
-	private String telnum;
-	private String in_name;
-	private String comment;
-	private Date write_date;
-	private int processing;
+	private String name; // 예약자명
+	private Date resv_date; // 원하는 예약일
+	private int room; // 방번호(1:퍼스트클래스, 2:비즈니스, 3:이코노미)
+	private String postcode; // 우편번호
+	private String roadAddress; // 도로명주소
+	private String detailAddress; // 상세주소
+	private String extraAddress; // 참고항목(ex. (구갈동))
+	private String telnum; // 전화번호
+	private String in_name; // 입금자명
+	private String comment; // 남길 말
+	private Date write_date; // 예약한 날짜
+	private int processing; // 예약진행상태 (1:예약완료, 2:예약확정, 3.환불...)
 	
 	public Reservation() {
 		

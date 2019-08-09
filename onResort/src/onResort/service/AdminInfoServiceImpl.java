@@ -1,3 +1,5 @@
+// adminInfo의 Service interface를 실제 구현한 부분
+
 package onResort.service;
 
 import java.util.List;
@@ -14,10 +16,11 @@ public class AdminInfoServiceImpl implements AdminInfoService {
 		return 0;
 	}
 
+	// 입력한 아이디와 비밀번호를 확인하기 위해 id값으로 select
 	@Override
 	public AdminInfoDto selectOne(String id) {
-		AdminInfo a = AdminInfoDao.getRecordById(id);
-		return new AdminInfoDto(a.getId(), a.getPw());
+		AdminInfo a = AdminInfoDao.getRecordById(id); // DAO에서 select해온 값을 AdminInfo에 받아옴
+		return new AdminInfoDto(a.getId(), a.getPw()); // View단으로 전달하기 위해 DTO로 변환하여 줌
 	}
 
 	@Override

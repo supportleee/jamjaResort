@@ -1,8 +1,10 @@
+// AdminInfo Service단에서 사용되는 DTO
+
 package onResort.dto;
 
 public class AdminInfoDto {
-	private String id;
-	private String pw;
+	private String id; // 관리자 id
+	private String pw; // 관리자 비밀번호
 
 	public AdminInfoDto() {
 

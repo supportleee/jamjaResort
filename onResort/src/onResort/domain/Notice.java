@@ -1,15 +1,17 @@
+// 공지게시판 domain (DB와 1:1 대응)
+
 package onResort.domain;
 
 import java.util.Date;
 
 public class Notice {
-	private int id;
-	private String title;
-	private String content;
-	private Date dayOfRegister;
-	private String imgname;
-	private String orgimgname;
-	private int viewcnt;
+	private int id; // 게시글 번호
+	private String title; // 게시글 제목
+	private String content; // 게시글 내용
+	private Date dayOfRegister; // 게시글 등록일
+	private String imgname; // 게시글 이미지이름(중복 문제 처리된 이름)
+	private String orgimgname; // 게시글 이미지이름(원본)
+	private int viewcnt; // 게시글 조회수
 
 	public Notice() {
 	}

@@ -7,14 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- 모바일 넓이에 맞게 출력되도록 하는 태그 -->
 <meta name="description" content="">
 <meta name="author" content="">
 <title>onResort</title>
 <!-- Bootstrap core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
+<!-- jquery -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 .table thead th {
@@ -27,8 +26,6 @@
 </style>
 </head>
 <body>
-
-
 	<!-- Page Content -->
 	<div class="container">
 
@@ -49,17 +46,16 @@
 						<tr>
 							<th>날짜</th>
 							<th>요일</th>
-							<th>퍼스트<br>클래스
-							</th>
-							<th>비즈<br>니스
-							</th>
-							<th>이코<br>노미
-							</th>
+							<th>퍼스트<br>클래스</th>
+							<th>비즈<br>니스</th>
+							<th>이코<br>노미</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
+							// service 사용을 위해 선언
 							ReservationService resvService = new ReservationServiceImpl();
+							// select 결과를 받을 배열 선언
 							String[][] resv_arr = resvService.selectAllReservation();
 							for (int i = 0; i < 30; i++) {
 						%><tr>
@@ -95,7 +91,6 @@
 		<!-- /.row -->
 	</div>
 	<!-- /.container -->
-
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
